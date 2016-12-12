@@ -89,23 +89,23 @@
                                             <action selector="capturePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PCW-Li-38J"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHs-dd-OPl">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYB-Fb-0Sw">
                                         <rect key="frame" x="314" y="44.5" width="41" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doneWithCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pgz-iV-69I"/>
+                                            <action selector="doneWithCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7SG-gy-KsZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="hHs-dd-OPl" firstAttribute="centerY" secondItem="ofu-DU-R4C" secondAttribute="centerY" id="34s-Dh-yhm"/>
+                                    <constraint firstAttribute="trailing" secondItem="lYB-Fb-0Sw" secondAttribute="trailing" constant="20" id="3ob-7v-Ur4"/>
                                     <constraint firstItem="r0l-xp-mea" firstAttribute="centerX" secondItem="ofu-DU-R4C" secondAttribute="centerX" id="7Px-BK-lDc"/>
-                                    <constraint firstAttribute="trailing" secondItem="hHs-dd-OPl" secondAttribute="trailing" constant="20" id="DG0-8c-kK5"/>
                                     <constraint firstItem="r0l-xp-mea" firstAttribute="centerY" secondItem="ofu-DU-R4C" secondAttribute="centerY" id="iUX-hg-00Y"/>
+                                    <constraint firstItem="lYB-Fb-0Sw" firstAttribute="centerY" secondItem="ofu-DU-R4C" secondAttribute="centerY" id="ycT-IL-CxF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -138,7 +138,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="doneButton" destination="hHs-dd-OPl" id="QtT-Tl-zdm"/>
+                        <outlet property="doneButton" destination="lYB-Fb-0Sw" id="bOk-C3-Ztd"/>
                         <outlet property="photoButton" destination="r0l-xp-mea" id="aIQ-gY-XpZ"/>
                         <outlet property="previewView" destination="3eR-Rn-XpZ" id="e7I-nu-L6j"/>
                     </connections>

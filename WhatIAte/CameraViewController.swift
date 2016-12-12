@@ -38,8 +38,8 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        doneButton.isHidden = true
         photoButton.isEnabled = false
-        
         previewView.session = session
         
         switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
@@ -160,6 +160,13 @@ class CameraViewController: UIViewController {
                 self.sessionQueue.async { [unowned self] in
                     self.inProgressPhotoCaptureDelegates[photoCaptureDelegate.requestedPhotoSettings.uniqueID] = nil
                     self.numberOfPhotosTaken += 1
+                    
+                    if self.doneButton.isHidden {
+                        DispatchQueue.main.async { [unowned self] in
+                            self.doneButton.isHidden = false
+                        }
+                    }
+                    
                     if self.numberOfPhotosTaken >= self.numberOfPhotosToTake {
                         DispatchQueue.main.async { [unowned self] in
                             self.doneWithCamera(self.doneButton)
