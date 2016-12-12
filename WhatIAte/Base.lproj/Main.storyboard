@@ -59,7 +59,7 @@
         <!--Choose Photos-->
         <scene sceneID="2oW-Q2-Y9j">
             <objects>
-                <viewController id="0v3-07-Gch" customClass="WIAImagePickerController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0v3-07-Gch" customClass="WIAImagePickerController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cGv-CW-hzw"/>
                         <viewControllerLayoutGuide type="bottom" id="iM2-dU-EdY"/>
@@ -67,7 +67,54 @@
                     <view key="view" contentMode="scaleToFill" id="iIW-Ki-oRp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gws-xB-uLr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="SBb-JA-FJh">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WIAImagePickerCollectionViewCell" id="kRN-dB-x1p" customClass="WIAImagePickerCollectionViewCell" customModule="WhatIAte" customModuleProvider="target">
+                                        <rect key="frame" x="2" y="2" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gax-cf-c2E">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Gax-cf-c2E" firstAttribute="leading" secondItem="kRN-dB-x1p" secondAttribute="leading" id="6p0-5S-5Zz"/>
+                                            <constraint firstItem="Gax-cf-c2E" firstAttribute="top" secondItem="kRN-dB-x1p" secondAttribute="top" id="HVP-70-Oup"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gax-cf-c2E" secondAttribute="trailing" id="WmC-er-nWt"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gax-cf-c2E" secondAttribute="bottom" id="mrB-Ti-J9M"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Gax-cf-c2E" id="Jhm-h3-B0H"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="0v3-07-Gch" id="34M-RY-xy7"/>
+                                    <outlet property="delegate" destination="0v3-07-Gch" id="n5P-Ge-eOB"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gws-xB-uLr" firstAttribute="leading" secondItem="iIW-Ki-oRp" secondAttribute="leading" id="MC9-KW-yK9"/>
+                            <constraint firstItem="gws-xB-uLr" firstAttribute="top" secondItem="cGv-CW-hzw" secondAttribute="bottom" id="Vf7-76-aP5"/>
+                            <constraint firstAttribute="bottom" secondItem="gws-xB-uLr" secondAttribute="bottom" id="YR7-qQ-Gjp"/>
+                            <constraint firstAttribute="trailing" secondItem="gws-xB-uLr" secondAttribute="trailing" id="xar-Lv-3NJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Photos" id="mIi-MQ-O6a">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ovc-ar-XEJ"/>
@@ -80,6 +127,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pickerCollectionView" destination="gws-xB-uLr" id="SMd-r3-pza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIz-ai-U0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
