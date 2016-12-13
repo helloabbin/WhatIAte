@@ -11,8 +11,15 @@ import UIKit
 class WIAImagePickerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var selectionButton: UIButton!
+    @IBOutlet weak var selectionView: UIView!
     
     var representedAssetIdentifier: String!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionButton.backgroundColor = WIAColor.mainColor
+    }
     
     var thumbnailImage: UIImage! {
         didSet {
@@ -23,5 +30,15 @@ class WIAImagePickerCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+    }
+    
+    func selectCell() {
+        selectionView.alpha = 1
+        selectionButton.alpha = 1
+    }
+    
+    func deSelectCell() {
+        selectionView.alpha = 0
+        selectionButton.alpha = 0
     }
 }

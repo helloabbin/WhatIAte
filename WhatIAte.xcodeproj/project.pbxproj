@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C60631DFFF59100B6DECE /* WIAColor.swift */; };
 		EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDCEEE611DFE83FC0076E249 /* Camera.storyboard */; };
 		EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE631DFE840A0076E249 /* CameraViewController.swift */; };
 		EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */; };
@@ -26,6 +27,7 @@
 		30513A87848930D169A075EF /* Pods-WhatIAte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIAte.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIAte/Pods-WhatIAte.debug.xcconfig"; sourceTree = "<group>"; };
 		B9CAF39D4F8487EB45C7852E /* Pods-WhatIAte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIAte.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIAte/Pods-WhatIAte.release.xcconfig"; sourceTree = "<group>"; };
 		CCD8382009F24ED7D631AD39 /* Pods_WhatIAte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatIAte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2C60631DFFF59100B6DECE /* WIAColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAColor.swift; sourceTree = "<group>"; };
 		EDCEEE611DFE83FC0076E249 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		EDCEEE631DFE840A0076E249 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,51 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		ED2C605D1DFFDC4A00B6DECE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EDFDA2291DFE811D00A1D244 /* WIADiscoverViewController.swift */,
+				EDFDA2181DFE7FFB00A1D244 /* SecondViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ED2C605E1DFFDC5700B6DECE /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				ED2C60621DFFDCA600B6DECE /* CollectionViewCell */,
+				ED2C60611DFFDC8C00B6DECE /* Camera */,
+				ED2C605F1DFFDC6B00B6DECE /* ImagePicker */,
+			);
+			name = UIElements;
+			sourceTree = "<group>";
+		};
+		ED2C605F1DFFDC6B00B6DECE /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				EDFDA22B1DFE821100A1D244 /* WIAImagePickerController.swift */,
+			);
+			name = ImagePicker;
+			sourceTree = "<group>";
+		};
+		ED2C60611DFFDC8C00B6DECE /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				EDCEEE631DFE840A0076E249 /* CameraViewController.swift */,
+				EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */,
+				EDCEEE651DFE840A0076E249 /* PreviewView.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		ED2C60621DFFDCA600B6DECE /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */,
+			);
+			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		EDFDA2081DFE7FFB00A1D244 = {
 			isa = PBXGroup;
 			children = (
@@ -93,13 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				EDFDA2141DFE7FFB00A1D244 /* AppDelegate.swift */,
-				EDFDA2291DFE811D00A1D244 /* WIADiscoverViewController.swift */,
-				EDFDA22B1DFE821100A1D244 /* WIAImagePickerController.swift */,
-				EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */,
-				EDCEEE631DFE840A0076E249 /* CameraViewController.swift */,
-				EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */,
-				EDCEEE651DFE840A0076E249 /* PreviewView.swift */,
-				EDFDA2181DFE7FFB00A1D244 /* SecondViewController.swift */,
+				ED2C60631DFFF59100B6DECE /* WIAColor.swift */,
+				ED2C605E1DFFDC5700B6DECE /* UIElements */,
+				ED2C605D1DFFDC4A00B6DECE /* ViewControllers */,
 				EDFDA21A1DFE7FFB00A1D244 /* Main.storyboard */,
 				EDCEEE611DFE83FC0076E249 /* Camera.storyboard */,
 				EDFDA21D1DFE7FFB00A1D244 /* Assets.xcassets */,
@@ -254,6 +297,7 @@
 				EDDB47E71DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift in Sources */,
 				EDCEEE681DFE840A0076E249 /* PreviewView.swift in Sources */,
 				EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */,
+				ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */,
 				EDFDA2191DFE7FFB00A1D244 /* SecondViewController.swift in Sources */,
 				EDFDA2151DFE7FFB00A1D244 /* AppDelegate.swift in Sources */,
 				EDFDA22C1DFE821100A1D244 /* WIAImagePickerController.swift in Sources */,

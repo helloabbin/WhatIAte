@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>So you can photograph all the delicious things you&apos;re eating and drinking</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>So you can share great food shots from your Photo Library</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

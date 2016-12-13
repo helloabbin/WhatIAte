@@ -12,10 +12,12 @@ import Photos
 class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var pickerCollectionView: UICollectionView!
-    
-    var allPhotos: PHFetchResult<PHAsset>!
+    @IBOutlet weak var cameraItem: UIBarButtonItem!
     
     fileprivate let imageManager = PHCachingImageManager()
+    
+    fileprivate var selectedAssets = [PHAsset]()
+    fileprivate var allPhotos: PHFetchResult<PHAsset>!
     fileprivate var thumbnailSize: CGSize!
     fileprivate var cellSize: CGSize!
     
@@ -53,12 +55,19 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func launchCamera(_ sender: Any) {
-        let storyboard = UIStoryboard.init(name: "Camera", bundle: nil)
-        let controller : CameraViewController = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
-        controller.numberOfPhotosToTake = 3
-        present(controller, animated: true, completion: nil)
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - IBAction
+    
+    @IBAction func cancelImagePicker(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func launchCamera(_ sender: Any) {
+        presentCamera(presentingViewController: self, withNumberOfPhotosToTake: 3 - selectedAssets.count)
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allPhotos.count
@@ -69,6 +78,13 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WIAImagePickerCollectionViewCell.self), for: indexPath) as? WIAImagePickerCollectionViewCell
             else { fatalError("unexpected cell in collection view") }
+        
+        if selectedAssets.contains(asset) {
+            cell.selectCell()
+        }
+        else{
+            cell.deSelectCell()
+        }
         
         let options = PHImageRequestOptions()
         options.resizeMode = PHImageRequestOptionsResizeMode.fast
@@ -85,10 +101,106 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         return cell
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell : WIAImagePickerCollectionViewCell = collectionView.cellForItem(at: indexPath) as? WIAImagePickerCollectionViewCell
+            else { fatalError("unexpected cell in collection view") }
+        let asset = allPhotos.object(at: indexPath.item)
+        
+        if selectedAssets.contains(asset) {
+            cell.deSelectCell()
+            selectedAssets.remove(at: selectedAssets.index(of: asset)!)
+        }
+        else{
+            if selectedAssets.count < 3 {
+                cell.selectCell()
+                selectedAssets.append(asset)
+            }
+        }
+        
+        if selectedAssets.count > 2 {
+            cameraItem.isEnabled = false
+        }
+        else{
+            cameraItem.isEnabled = true
+        }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return cellSize
     }
 
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: - Extension
+
+extension UIViewController {
+    func presentImagePicker(presentingViewController : UIViewController) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        
+        if status == .authorized {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "WIAImagePickerController")
+            presentingViewController.present(controller!, animated: true, completion: nil)
+        }
+        else if status == .denied {
+            DispatchQueue.main.async { [unowned presentingViewController] in
+                let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+                let message = "\(appName) doesn't have permission to use the Photos Library, please change privacy settings"
+                let alertController = UIAlertController(title: appName, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Settings", style: .`default`, handler: { action in
+                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                }))
+                
+                presentingViewController.present(alertController, animated: true, completion: nil)
+            }
+        }
+        else if status == .notDetermined {
+            PHPhotoLibrary.requestAuthorization({ [unowned presentingViewController] status in
+                if status == .authorized {
+                    DispatchQueue.main.async { [unowned presentingViewController] in
+                        let controller = self.storyboard?.instantiateViewController(withIdentifier: "WIAImagePickerController")
+                        presentingViewController.present(controller!, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
+        
+    }
+}
+
+extension String {
+    
+    var length: Int {
+        return self.characters.count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[Range(i ..< i + 1)]
+    }
+    
+    func substring(from: Int) -> String {
+        return self[Range(min(from, length) ..< length)]
+    }
+    
+    func substring(to: Int) -> String {
+        return self[Range(0 ..< max(0, to))]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return self[Range(start ..< end)]
+    }
+    
 }
 
 extension WIAImagePickerController: PHPhotoLibraryChangeObserver {
@@ -111,7 +223,10 @@ extension WIAImagePickerController: PHPhotoLibraryChangeObserver {
                         
                         for asset in changes.insertedObjects {
                             let resource : PHAssetResource = PHAssetResource.assetResources(for: asset).first!
-                            print(resource.originalFilename)
+                            let name : String = resource.originalFilename
+                            if name[0 ..< 3] == "WIA" {
+                                self.selectedAssets.append(asset)
+                            }
                         }
                         
                     }

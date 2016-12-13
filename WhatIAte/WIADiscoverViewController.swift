@@ -12,7 +12,6 @@ class WIADiscoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +20,9 @@ class WIADiscoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func addButtonClicked(_ sender: Any) {
+        presentImagePicker(presentingViewController: self)
+    }
 
     /*
     // MARK: - Navigation

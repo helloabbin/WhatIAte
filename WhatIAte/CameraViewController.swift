@@ -79,7 +79,7 @@ class CameraViewController: UIViewController {
                     let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
                     let message = "\(appName) doesn't have permission to use the camera, please change privacy settings"
                     let alertController = UIAlertController(title: appName, message: message, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     alertController.addAction(UIAlertAction(title: "Settings", style: .`default`, handler: { action in
                         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
                     }))
@@ -335,6 +335,44 @@ class CameraViewController: UIViewController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: - Extension
 
+extension UIViewController {
+    func presentCamera(presentingViewController : UIViewController, withNumberOfPhotosToTake : Int) {
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        
+        if status == .authorized {
+            let storyboard = UIStoryboard.init(name: "Camera", bundle: nil)
+            let controller : CameraViewController = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+            controller.numberOfPhotosToTake = withNumberOfPhotosToTake
+            presentingViewController.present(controller, animated: true, completion: nil)
+        }
+        else if status == .denied {
+            DispatchQueue.main.async { [unowned presentingViewController] in
+                let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+                let message = "\(appName) doesn't have permission to use the Camera, please change privacy settings"
+                let alertController = UIAlertController(title: appName, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Settings", style: .`default`, handler: { action in
+                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                }))
+                
+                presentingViewController.present(alertController, animated: true, completion: nil)
+            }
+        }
+        else if status == .notDetermined {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { [unowned presentingViewController] granted in
+                if granted {
+                    DispatchQueue.main.async { [unowned presentingViewController] in
+                        let storyboard = UIStoryboard.init(name: "Camera", bundle: nil)
+                        let controller : CameraViewController = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+                        controller.numberOfPhotosToTake = withNumberOfPhotosToTake
+                        presentingViewController.present(controller, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
+    }
+}
+
 extension UIInterfaceOrientation {
     var videoOrientation: AVCaptureVideoOrientation? {
         switch self {
@@ -346,5 +384,3 @@ extension UIInterfaceOrientation {
         }
     }
 }
-
-

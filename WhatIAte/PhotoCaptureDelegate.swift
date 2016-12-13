@@ -14,40 +14,18 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     
     private let willCapturePhotoAnimation: () -> ()
     
-    private let capturingLivePhoto: (Bool) -> ()
-    
     private let completed: (PhotoCaptureDelegate) -> ()
     
     private var photoData: Data? = nil
     
-    private var livePhotoCompanionMovieURL: URL? = nil
-    
     init(with requestedPhotoSettings: AVCapturePhotoSettings, willCapturePhotoAnimation: @escaping () -> (), capturingLivePhoto: @escaping (Bool) -> (), completed: @escaping (PhotoCaptureDelegate) -> ()) {
         self.requestedPhotoSettings = requestedPhotoSettings
         self.willCapturePhotoAnimation = willCapturePhotoAnimation
-        self.capturingLivePhoto = capturingLivePhoto
         self.completed = completed
     }
     
     private func didFinish() {
-        if let livePhotoCompanionMoviePath = livePhotoCompanionMovieURL?.path {
-            if FileManager.default.fileExists(atPath: livePhotoCompanionMoviePath) {
-                do {
-                    try FileManager.default.removeItem(atPath: livePhotoCompanionMoviePath)
-                }
-                catch {
-                    print("Could not remove file at url: \(livePhotoCompanionMoviePath)")
-                }
-            }
-        }
-        
         completed(self)
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, willBeginCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        if resolvedSettings.livePhotoMovieDimensions.width > 0 && resolvedSettings.livePhotoMovieDimensions.height > 0 {
-            capturingLivePhoto(true)
-        }
     }
     
     func capture(_ captureOutput: AVCapturePhotoOutput, willCapturePhotoForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
@@ -62,19 +40,6 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
             print("Error capturing photo: \(error)")
             return
         }
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishRecordingLivePhotoMovieForEventualFileAt outputFileURL: URL, resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        capturingLivePhoto(false)
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingLivePhotoToMovieFileAt outputFileURL: URL, duration: CMTime, photoDisplay photoDisplayTime: CMTime, resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
-        if let _ = error {
-            print("Error processing live photo companion movie: \(error)")
-            return
-        }
-        
-        livePhotoCompanionMovieURL = outputFileURL
     }
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
@@ -97,7 +62,6 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
                     
                     let options = PHAssetResourceCreationOptions()
                     options.originalFilename = "WIA\(NSUUID().uuidString).JPG"
-                    print(options.originalFilename ?? "NO UUID")
                     
                     creationRequest.addResource(with: .photo, data: photoData, options: options)
                     
