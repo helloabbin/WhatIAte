@@ -13,6 +13,7 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
 
     @IBOutlet weak var pickerCollectionView: UICollectionView!
     @IBOutlet weak var cameraItem: UIBarButtonItem!
+    @IBOutlet weak var nextItem: UIBarButtonItem!
     
     fileprivate let imageManager = PHCachingImageManager()
     
@@ -42,6 +43,8 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         
         let allPhotosOptions = PHFetchOptions()
         allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        let bobPredicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+        allPhotosOptions.predicate = bobPredicate
         allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
         pickerCollectionView.reloadData()
     }
@@ -125,6 +128,13 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         }
         else{
             cameraItem.isEnabled = true
+        }
+        
+        if selectedAssets.count > 0 {
+            nextItem.isEnabled = true
+        }
+        else{
+            nextItem.isEnabled = false
         }
     }
     
@@ -226,6 +236,7 @@ extension WIAImagePickerController: PHPhotoLibraryChangeObserver {
                             let name : String = resource.originalFilename
                             if name[0 ..< 3] == "WIA" {
                                 self.selectedAssets.append(asset)
+                                self.nextItem.isEnabled = true
                             }
                         }
                         

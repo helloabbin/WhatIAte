@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C60631DFFF59100B6DECE /* WIAColor.swift */; };
+		ED2C60671E01206E00B6DECE /* WIAChooseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */; };
+		EDB21A0D1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A0B1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift */; };
+		EDB21A0E1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB21A0C1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib */; };
+		EDB21A131E012897003E5CA6 /* WIAReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */; };
+		EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */; };
+		EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */; };
+		EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */; };
 		EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDCEEE611DFE83FC0076E249 /* Camera.storyboard */; };
 		EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE631DFE840A0076E249 /* CameraViewController.swift */; };
 		EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */; };
@@ -28,6 +35,13 @@
 		B9CAF39D4F8487EB45C7852E /* Pods-WhatIAte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatIAte.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatIAte/Pods-WhatIAte.release.xcconfig"; sourceTree = "<group>"; };
 		CCD8382009F24ED7D631AD39 /* Pods_WhatIAte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatIAte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2C60631DFFF59100B6DECE /* WIAColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAColor.swift; sourceTree = "<group>"; };
+		ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAChooseItemViewController.swift; sourceTree = "<group>"; };
+		EDB21A0B1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		EDB21A0C1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAReviewTableViewController.swift; sourceTree = "<group>"; };
+		EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIARatingTableViewCell.swift; sourceTree = "<group>"; };
+		EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATextViewCellTableViewCell.swift; sourceTree = "<group>"; };
+		EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextViewCellTableViewCell.xib; sourceTree = "<group>"; };
 		EDCEEE611DFE83FC0076E249 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		EDCEEE631DFE840A0076E249 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				EDFDA2291DFE811D00A1D244 /* WIADiscoverViewController.swift */,
+				EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */,
+				ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */,
 				EDFDA2181DFE7FFB00A1D244 /* SecondViewController.swift */,
 			);
 			name = ViewControllers;
@@ -85,6 +101,7 @@
 		ED2C605E1DFFDC5700B6DECE /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				EDB21A0F1E0121BD003E5CA6 /* TableViewCell */,
 				ED2C60621DFFDCA600B6DECE /* CollectionViewCell */,
 				ED2C60611DFFDC8C00B6DECE /* Camera */,
 				ED2C605F1DFFDC6B00B6DECE /* ImagePicker */,
@@ -116,6 +133,34 @@
 				EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */,
 			);
 			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		EDB21A0F1E0121BD003E5CA6 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDB21A1B1E016367003E5CA6 /* TextViewCell */,
+				EDB21A1A1E01635A003E5CA6 /* TextFieldCell */,
+				EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		EDB21A1A1E01635A003E5CA6 /* TextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDB21A0B1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift */,
+				EDB21A0C1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib */,
+			);
+			name = TextFieldCell;
+			sourceTree = "<group>";
+		};
+		EDB21A1B1E016367003E5CA6 /* TextViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */,
+				EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */,
+			);
+			name = TextViewCell;
 			sourceTree = "<group>";
 		};
 		EDFDA2081DFE7FFB00A1D244 = {
@@ -217,6 +262,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */,
+				EDB21A0E1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib in Resources */,
 				EDFDA2211DFE7FFB00A1D244 /* LaunchScreen.storyboard in Resources */,
 				EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */,
 				EDFDA21E1DFE7FFB00A1D244 /* Assets.xcassets in Resources */,
@@ -293,14 +340,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */,
+				EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */,
 				EDFDA22A1DFE811D00A1D244 /* WIADiscoverViewController.swift in Sources */,
+				EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */,
 				EDDB47E71DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift in Sources */,
+				EDB21A131E012897003E5CA6 /* WIAReviewTableViewController.swift in Sources */,
 				EDCEEE681DFE840A0076E249 /* PreviewView.swift in Sources */,
 				EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */,
 				ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */,
+				ED2C60671E01206E00B6DECE /* WIAChooseItemViewController.swift in Sources */,
 				EDFDA2191DFE7FFB00A1D244 /* SecondViewController.swift in Sources */,
 				EDFDA2151DFE7FFB00A1D244 /* AppDelegate.swift in Sources */,
 				EDFDA22C1DFE821100A1D244 /* WIAImagePickerController.swift in Sources */,
+				EDB21A0D1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
