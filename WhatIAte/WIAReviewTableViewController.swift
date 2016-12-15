@@ -97,7 +97,11 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
-        case WIAReviewViewControllerSection.item.rawValue , WIAReviewViewControllerSection.place.rawValue:
+        case WIAReviewViewControllerSection.item.rawValue:
+            performSegue(withIdentifier: "WIAChooseItemViewControllerSegue", sender: self)
+            return false
+        case WIAReviewViewControllerSection.place.rawValue:
+            performSegue(withIdentifier: "WIAChoosePlaceViewControllerSegue", sender: self)
             return false
         default:
             return true

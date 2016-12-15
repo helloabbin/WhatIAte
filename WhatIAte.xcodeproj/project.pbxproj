@@ -15,6 +15,7 @@
 		EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */; };
 		EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */; };
 		EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */; };
+		EDB21A211E016897003E5CA6 /* WIAChoosePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A201E016897003E5CA6 /* WIAChoosePlaceViewController.swift */; };
 		EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDCEEE611DFE83FC0076E249 /* Camera.storyboard */; };
 		EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE631DFE840A0076E249 /* CameraViewController.swift */; };
 		EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */; };
@@ -42,6 +43,7 @@
 		EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIARatingTableViewCell.swift; sourceTree = "<group>"; };
 		EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATextViewCellTableViewCell.swift; sourceTree = "<group>"; };
 		EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextViewCellTableViewCell.xib; sourceTree = "<group>"; };
+		EDB21A201E016897003E5CA6 /* WIAChoosePlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAChoosePlaceViewController.swift; sourceTree = "<group>"; };
 		EDCEEE611DFE83FC0076E249 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		EDCEEE631DFE840A0076E249 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				EDFDA2291DFE811D00A1D244 /* WIADiscoverViewController.swift */,
 				EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */,
 				ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */,
+				EDB21A201E016897003E5CA6 /* WIAChoosePlaceViewController.swift */,
 				EDFDA2181DFE7FFB00A1D244 /* SecondViewController.swift */,
 			);
 			name = ViewControllers;
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB21A211E016897003E5CA6 /* WIAChoosePlaceViewController.swift in Sources */,
 				EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */,
 				EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */,
 				EDFDA22A1DFE811D00A1D244 /* WIADiscoverViewController.swift in Sources */,
@@ -396,6 +400,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -445,6 +450,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

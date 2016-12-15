@@ -1,5 +1,5 @@
 //
-//  WIAChooseItemViewController.swift
+//  WIAChoosePlaceViewController.swift
 //  WhatIAte
 //
 //  Created by Abbin Varghese on 14/12/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -35,7 +35,7 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WIAChooseItemViewControllerCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WIAChoosePlaceViewControllerCell", for: indexPath)
         return cell
     }
 
