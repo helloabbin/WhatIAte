@@ -24,8 +24,6 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.keyboardDismissMode = .interactive
         
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
