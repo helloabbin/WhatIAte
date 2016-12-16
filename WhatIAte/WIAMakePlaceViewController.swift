@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate {
+class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate {
     
     enum WIAMakePlaceViewControllerSection: Int {
         case name = 0
@@ -77,11 +77,15 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             return cell
         }
         else if indexPath.section == WIAMakePlaceViewControllerSection.phoneNumber.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath)
+            let cell : WIATagTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath) as! WIATagTableViewCell
+            cell.tagView.tapDelegate = self
+            cell.tagView.tagIndexPath = indexPath
             return cell
         }
         else if indexPath.section == WIAMakePlaceViewControllerSection.workingDays.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
+            let cell : WIATagTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath) as! WIATagTableViewCell
+            cell.tagView.tapDelegate = self
+            cell.tagView.tagIndexPath = indexPath
             return cell
         }
         else {
@@ -106,6 +110,20 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             return "Working hours (optional)"
         default:
             return ""
+        }
+    }
+    
+    func tagsControl(_ tagsControl: TLTagsControl!, didUpdateTags tagArray: [String]!, with indexPath: IndexPath!) {
+        
+    }
+    
+    func tagsControlShouldBeginEditing(_ tagsControl: TLTagsControl!, with indexPath: IndexPath!) -> Bool {
+        if indexPath.section == WIAMakePlaceViewControllerSection.phoneNumber.rawValue {
+            return true
+        }
+        else{
+            performSegue(withIdentifier: "WIAWorkingDaysTableViewControllerSegue", sender: self)
+            return false
         }
     }
     

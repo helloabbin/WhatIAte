@@ -21,22 +21,16 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLC-AX-srd">
                         <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-eh-x32">
-                                <rect key="frame" x="15" y="0.0" width="260" height="43.5"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="117-HS-1sf"/>
-                                </connections>
-                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7a-Ep-6y5" customClass="TLTagsControl">
+                                <rect key="frame" x="15" y="8" width="260" height="27.5"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.90264214409999999" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8ga-eh-x32" secondAttribute="trailing" constant="15" id="4ry-dR-ynK"/>
-                            <constraint firstItem="8ga-eh-x32" firstAttribute="leading" secondItem="sLC-AX-srd" secondAttribute="leading" constant="15" id="LEB-Ci-bX8"/>
-                            <constraint firstAttribute="bottom" secondItem="8ga-eh-x32" secondAttribute="bottom" id="oZr-6b-LZx"/>
-                            <constraint firstItem="8ga-eh-x32" firstAttribute="top" secondItem="sLC-AX-srd" secondAttribute="top" id="rIS-fc-wtB"/>
+                            <constraint firstAttribute="bottom" secondItem="X7a-Ep-6y5" secondAttribute="bottom" constant="8" id="89v-5M-jQA"/>
+                            <constraint firstItem="X7a-Ep-6y5" firstAttribute="leading" secondItem="sLC-AX-srd" secondAttribute="leading" constant="15" id="LJI-Xt-8dq"/>
+                            <constraint firstItem="X7a-Ep-6y5" firstAttribute="top" secondItem="sLC-AX-srd" secondAttribute="top" constant="8" id="uDL-5d-OwE"/>
+                            <constraint firstAttribute="trailing" secondItem="X7a-Ep-6y5" secondAttribute="trailing" constant="15" id="uVa-rO-kVe"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -50,7 +44,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="cellTextField" destination="8ga-eh-x32" id="daO-tL-gBD"/>
+                <outlet property="tagView" destination="X7a-Ep-6y5" id="IfL-8P-xfU"/>
             </connections>
             <point key="canvasLocation" x="-159" y="60"/>
         </tableViewCell>

@@ -408,10 +408,10 @@
             </objects>
             <point key="canvasLocation" x="5798" y="10"/>
         </scene>
-        <!--Add New Item details-->
+        <!--Add New Place details-->
         <scene sceneID="OxT-9E-3Ue">
             <objects>
-                <tableViewController title="Add New Item details" id="XRA-jc-jRN" customClass="WIAMakePlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Add New Place details" id="XRA-jc-jRN" customClass="WIAMakePlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SMC-jJ-wxH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -421,10 +421,68 @@
                             <outlet property="delegate" destination="XRA-jc-jRN" id="ptb-jB-ODL"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="SZp-7f-y1a" kind="presentation" identifier="WIAWorkingDaysTableViewControllerSegue" id="5n5-Xo-i64"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="My7-FN-iSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6521" y="9"/>
+        </scene>
+        <!--Choose Working Days-->
+        <scene sceneID="kGK-IZ-IO9">
+            <objects>
+                <tableViewController id="yIV-xl-nsh" customClass="WIAWorkingDaysTableViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Nn6-b5-DKE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WIAWorkingDaysTableViewCell" id="xIA-dT-HMf" customClass="WIAWorkingDaysTableViewCell" customModule="WhatIAte" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xIA-dT-HMf" id="3Rn-Vr-hK3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4SE-nh-lpb">
+                                            <rect key="frame" x="311" y="6.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchDidChangeValue:" destination="xIA-dT-HMf" eventType="valueChanged" id="piz-Ov-J9C"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kds-2X-1po">
+                                            <rect key="frame" x="15" y="0.0" width="288" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kds-2X-1po" firstAttribute="top" secondItem="3Rn-Vr-hK3" secondAttribute="top" id="5MA-Oh-dNo"/>
+                                        <constraint firstAttribute="bottom" secondItem="kds-2X-1po" secondAttribute="bottom" id="ASt-aZ-zjf"/>
+                                        <constraint firstItem="4SE-nh-lpb" firstAttribute="leading" secondItem="kds-2X-1po" secondAttribute="trailing" constant="8" id="P7T-8a-yX7"/>
+                                        <constraint firstItem="kds-2X-1po" firstAttribute="leading" secondItem="3Rn-Vr-hK3" secondAttribute="leading" constant="15" id="k6Z-U4-LQa"/>
+                                        <constraint firstItem="4SE-nh-lpb" firstAttribute="centerY" secondItem="3Rn-Vr-hK3" secondAttribute="centerY" id="rrr-5k-AMm"/>
+                                        <constraint firstAttribute="trailing" secondItem="4SE-nh-lpb" secondAttribute="trailing" constant="15" id="uZH-Oi-fHo"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellSwitch" destination="4SE-nh-lpb" id="TEs-l9-MSe"/>
+                                    <outlet property="cellTextLabel" destination="kds-2X-1po" id="99F-cr-vvX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yIV-xl-nsh" id="iaW-gx-XAp"/>
+                            <outlet property="delegate" destination="yIV-xl-nsh" id="AOE-dn-8Ng"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choose Working Days" id="nhf-gB-USV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4iO-sd-Rp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8188" y="8.5457271364317844"/>
         </scene>
         <!--Choose an Item-->
         <scene sceneID="n49-TH-tgn">
@@ -657,6 +715,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsl-nd-lwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4988" y="-633"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GXA-Ao-BmD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZp-7f-y1a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3qo-cH-pea">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yIV-xl-nsh" kind="relationship" relationship="rootViewController" id="krS-Od-s8o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cx7-3U-RFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7248.8000000000002" y="8.5457271364317844"/>
         </scene>
     </scenes>
     <resources>
