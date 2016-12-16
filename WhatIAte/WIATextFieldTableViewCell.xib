@@ -37,6 +37,7 @@
                             <constraint firstItem="gXs-Zk-xPf" firstAttribute="leading" secondItem="6HJ-83-qnl" secondAttribute="leading" constant="15" id="Evt-SJ-TWm"/>
                             <constraint firstAttribute="bottom" secondItem="gXs-Zk-xPf" secondAttribute="bottom" id="hbb-yA-Oa1"/>
                             <constraint firstItem="gXs-Zk-xPf" firstAttribute="top" secondItem="6HJ-83-qnl" secondAttribute="top" id="lHW-uk-Qsb"/>
+                            <constraint firstAttribute="height" constant="44" id="rB4-uB-nhe"/>
                         </constraints>
                     </view>
                 </subviews>

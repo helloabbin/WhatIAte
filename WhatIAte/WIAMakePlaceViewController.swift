@@ -24,9 +24,12 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.keyboardDismissMode = .interactive
         
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
+        tableView.register(UINib.init(nibName: "WIATagTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATagTableViewCell")
         
         let saveButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneButtonClicked))
         navigationItem.rightBarButtonItem = saveButton
@@ -76,7 +79,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             return cell
         }
         else if indexPath.section == WIAMakePlaceViewControllerSection.phoneNumber.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath)
             return cell
         }
         else if indexPath.section == WIAMakePlaceViewControllerSection.workingDays.rawValue {
