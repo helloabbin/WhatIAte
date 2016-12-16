@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc protocol WIATextFieldTableViewCellDelegate : NSObjectProtocol {
+protocol WIATextFieldTableViewCellDelegate : NSObjectProtocol {
 
-    @objc optional func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool
+    func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool
 
 }
 
@@ -44,9 +44,17 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellIndexPath = nil
+        delegate = nil
+        celltextField.placeholder = ""
+        celltextField.text = ""
+    }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if let delegate = self.delegate {
-            return delegate.WIATextFieldTableViewCell!(self, shouldBeginEditingRowAt: cellIndexPath!)
+            return delegate.WIATextFieldTableViewCell(self, shouldBeginEditingRowAt: cellIndexPath!)
         }
         else{
             return true

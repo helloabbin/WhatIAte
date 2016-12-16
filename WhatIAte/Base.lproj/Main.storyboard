@@ -401,28 +401,28 @@
                     <connections>
                         <outlet property="searchBar" destination="vih-Kn-n5U" id="hoE-Zk-fzd"/>
                         <outlet property="searchTableView" destination="Jf9-nj-3u3" id="omG-ys-Vwf"/>
-                        <segue destination="Cug-2b-DIL" kind="show" identifier="WIAPlaceViewControllerSegue" id="HUi-nb-9fc"/>
+                        <segue destination="XRA-jc-jRN" kind="show" identifier="WIAPlaceViewControllerSegue" id="Pjx-jI-ZJH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILv-5d-Lux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5798" y="10"/>
         </scene>
-        <!--Place View Controller-->
-        <scene sceneID="rXJ-Vt-E6w">
+        <!--Add New Item details-->
+        <scene sceneID="OxT-9E-3Ue">
             <objects>
-                <viewController id="Cug-2b-DIL" customClass="WIAPlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P58-Lz-zKy"/>
-                        <viewControllerLayoutGuide type="bottom" id="alv-pL-ZEo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LUV-co-cyL">
+                <tableViewController title="Add New Item details" id="XRA-jc-jRN" customClass="WIAMakePlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SMC-jJ-wxH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A05-ax-XLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <connections>
+                            <outlet property="dataSource" destination="XRA-jc-jRN" id="ZwQ-ad-4bN"/>
+                            <outlet property="delegate" destination="XRA-jc-jRN" id="ptb-jB-ODL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="My7-FN-iSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6521" y="9"/>
         </scene>
@@ -491,7 +491,7 @@
                             <constraint firstItem="ZoV-p7-y1G" firstAttribute="top" secondItem="uHh-hn-mcG" secondAttribute="bottom" id="zQ2-Jz-tvp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Choose an item" id="EQY-wg-cyc">
+                    <navigationItem key="navigationItem" title="Choose an Item" id="EQY-wg-cyc">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jwA-X8-jlC">
                             <connections>
                                 <action selector="cancelPicker:" destination="Kr4-13-IMz" id="W23-A5-mnh"/>
@@ -501,49 +501,30 @@
                     <connections>
                         <outlet property="searchBar" destination="uHh-hn-mcG" id="ZWl-Jh-fry"/>
                         <outlet property="searchResultTableView" destination="ZoV-p7-y1G" id="5PB-7i-2cC"/>
-                        <segue destination="79Q-zk-cLv" kind="show" identifier="WIAMakeItemViewControllerSegue" id="5Ir-es-voZ"/>
+                        <segue destination="JNc-xP-ymr" kind="show" identifier="WIAMakeItemViewControllerSegue" id="Nuh-d5-eoJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIs-g6-wLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5798" y="-633"/>
         </scene>
-        <!--Make Item View Controller-->
-        <scene sceneID="FcH-gT-McJ">
+        <!--Add New Item details-->
+        <scene sceneID="djG-DO-AJH">
             <objects>
-                <viewController id="79Q-zk-cLv" customClass="WIAMakeItemViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vg8-3l-uSe"/>
-                        <viewControllerLayoutGuide type="bottom" id="IJM-Ke-CJg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tKS-bY-Eh3">
+                <tableViewController title="Add New Item details" id="JNc-xP-ymr" customClass="WIAMakeItemViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bnf-JD-d4R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ljU-me-oqt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="79Q-zk-cLv" id="Euk-YB-LCL"/>
-                                    <outlet property="delegate" destination="79Q-zk-cLv" id="1wQ-Nj-Qgc"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ljU-me-oqt" firstAttribute="leading" secondItem="tKS-bY-Eh3" secondAttribute="leading" id="LiP-fp-dtD"/>
-                            <constraint firstAttribute="trailing" secondItem="ljU-me-oqt" secondAttribute="trailing" id="caK-P4-ckb"/>
-                            <constraint firstItem="ljU-me-oqt" firstAttribute="top" secondItem="tKS-bY-Eh3" secondAttribute="top" id="mJi-tk-sU6"/>
-                            <constraint firstAttribute="bottom" secondItem="ljU-me-oqt" secondAttribute="bottom" id="mf2-M0-giu"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="itemMakeTableView" destination="ljU-me-oqt" id="mEz-OO-heL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Fb-Uu-ctJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <connections>
+                            <outlet property="dataSource" destination="JNc-xP-ymr" id="MNs-Ws-Zye"/>
+                            <outlet property="delegate" destination="JNc-xP-ymr" id="PHC-JJ-3HM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n6l-iP-j0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6522" y="-634"/>
+            <point key="canvasLocation" x="6521" y="-634"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

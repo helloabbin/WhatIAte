@@ -43,8 +43,8 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "WIAPlaceViewControllerSegue" {
-            let vc : WIAPlaceViewController = segue.destination as! WIAPlaceViewController
-            vc.itemName = searchResult.first as! String?
+            let vc : WIAMakePlaceViewController = segue.destination as! WIAMakePlaceViewController
+            vc.placeName = searchResult.first as! String?
         }
     }
     

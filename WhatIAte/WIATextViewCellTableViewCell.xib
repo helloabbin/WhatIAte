@@ -37,6 +37,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="yYy-3L-Km4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Re-VM-Znx"/>
                     <constraint firstAttribute="bottom" secondItem="yYy-3L-Km4" secondAttribute="bottom" id="F3E-UY-iJY"/>
@@ -44,6 +45,7 @@
                     <constraint firstAttribute="trailing" secondItem="yYy-3L-Km4" secondAttribute="trailing" constant="15" id="gKb-Cv-cms"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="25" y="99.5"/>
         </tableViewCell>
     </objects>

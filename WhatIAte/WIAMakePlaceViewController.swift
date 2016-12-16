@@ -1,29 +1,31 @@
 //
-//  WIAMakeItemViewController.swift
+//  WIAMakePlaceViewController.swift
 //  WhatIAte
 //
-//  Created by Abbin Varghese on 15/12/16.
+//  Created by Abbin Varghese on 16/12/16.
 //  Copyright © 2016 Abbin Varghese. All rights reserved.
 //
 
 import UIKit
 
-class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCellDelegate {
-
-    enum WIAMakeItemViewControllerSection: Int {
+class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate {
+    
+    enum WIAMakePlaceViewControllerSection: Int {
         case name = 0
-        case price = 1
-        case cuisine = 2
-        case description = 3
+        case address = 1
+        case coordinates = 2
+        case phoneNumber = 3
+        case workingDays = 4
+        case workinghours = 5
     }
     
-    var itemName : String?
-    
+    var placeName : String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.keyboardDismissMode = .interactive
-        tableView.register(UINib.init(nibName: "WIATextViewCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewCellTableViewCell")
+        
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         
         let saveButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneButtonClicked))
@@ -38,92 +40,81 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    // MARK: - Table view data source
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 6
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == WIAMakeItemViewControllerSection.name.rawValue {
+        if indexPath.section == WIAMakePlaceViewControllerSection.name.rawValue {
             let cell : WIATextFieldTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath) as! WIATextFieldTableViewCell
             cell.delegate = self
             cell.cellIndexPath = indexPath
             cell.cellPlaceHolder = "type here"
-            cell.cellText = itemName
+            cell.cellText = placeName
             return cell
         }
-        else if indexPath.section == WIAMakeItemViewControllerSection.price.rawValue {
+        else if indexPath.section == WIAMakePlaceViewControllerSection.address.rawValue {
             let cell : WIATextFieldTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath) as! WIATextFieldTableViewCell
             cell.delegate = self
             cell.cellIndexPath = indexPath
             cell.cellPlaceHolder = "type here"
             return cell
         }
-        else if indexPath.section == WIAMakeItemViewControllerSection.cuisine.rawValue {
+        else if indexPath.section == WIAMakePlaceViewControllerSection.coordinates.rawValue {
             let cell : WIATextFieldTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath) as! WIATextFieldTableViewCell
             cell.delegate = self
             cell.cellIndexPath = indexPath
-            cell.cellPlaceHolder = "add a cuisine"
+            cell.cellPlaceHolder = "tap here"
             return cell
         }
-        else{
-            let cell : WIATextViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextViewCellTableViewCell", for: indexPath) as! WIATextViewCellTableViewCell
+        else if indexPath.section == WIAMakePlaceViewControllerSection.phoneNumber.rawValue {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
+            return cell
+        }
+        else if indexPath.section == WIAMakePlaceViewControllerSection.workingDays.rawValue {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case WIAMakeItemViewControllerSection.name.rawValue:
-            return "Name of the item"
-        case WIAMakeItemViewControllerSection.price.rawValue:
-            return "How much do it cost"
-        case WIAMakeItemViewControllerSection.cuisine.rawValue:
-            return "Cuisine"
-        case WIAMakeItemViewControllerSection.description.rawValue:
-            return "Give a short description (optional)"
+        case WIAMakePlaceViewControllerSection.name.rawValue:
+            return "Name of the place"
+        case WIAMakePlaceViewControllerSection.address.rawValue:
+            return "Address"
+        case WIAMakePlaceViewControllerSection.coordinates.rawValue:
+            return "Coordinates"
+        case WIAMakePlaceViewControllerSection.phoneNumber.rawValue:
+            return "Phone number (optional)"
+        case WIAMakePlaceViewControllerSection.workingDays.rawValue:
+            return "Working days (optional)"
+        case WIAMakePlaceViewControllerSection.workinghours.rawValue:
+            return "Working hours (optional)"
         default:
             return ""
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case WIAMakeItemViewControllerSection.name.rawValue:
-            return 44
-        case WIAMakeItemViewControllerSection.price.rawValue:
-            return 44
-        case WIAMakeItemViewControllerSection.cuisine.rawValue:
-            return 44
-        case WIAMakeItemViewControllerSection.description.rawValue:
-            return 100
-        default:
-            return 44
-        }
-    }
-    
     func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
-        case WIAMakeItemViewControllerSection.name.rawValue, WIAMakeItemViewControllerSection.price.rawValue:
-            return true
-        default:
+        case WIAMakePlaceViewControllerSection.coordinates.rawValue:
             return false
+        default:
+            return true
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
