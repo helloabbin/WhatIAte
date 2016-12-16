@@ -9,5 +9,6 @@ target 'WhatIAte' do
 
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'TagListView', '~> 1.0'
 
 end
