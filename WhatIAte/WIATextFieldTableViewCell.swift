@@ -27,6 +27,12 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    var cellText: String! {
+        didSet {
+            celltextField.text = cellText
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
