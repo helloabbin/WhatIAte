@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WIAWorkingDaysTableViewControllerDelegate {
+    func WIAWorkingDaysTableViewController(controller : WIAWorkingDaysTableViewController, didFinishWith workingDays : Array<Dictionary<String, Dictionary<String, Any>>>)
+}
+
 class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTableViewCellDelegate {
     
     enum WIAWorkingDaysTableViewControllerRow: Int {
@@ -22,6 +26,8 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
     
     var workingDaysArray = [[String:[String:Int]]]()
     private var daysArray = [Int]()
+    
+    var delegate: WIAWorkingDaysTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +63,11 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
             arrayOfDays.append(mainDict)
             
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            if let delegate = self.delegate {
+                delegate.WIAWorkingDaysTableViewController(controller: self, didFinishWith: arrayOfDays)
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate {
+class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate, WIAWorkingDaysTableViewControllerDelegate {
     
     enum WIAMakePlaceViewControllerSection: Int {
         case name = 0
@@ -40,6 +40,14 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WIAWorkingDaysTableViewControllerSegue" {
+            let nav : UINavigationController = segue.destination as! UINavigationController
+            let controller : WIAWorkingDaysTableViewController = nav.viewControllers.first as! WIAWorkingDaysTableViewController
+            controller.delegate = self
+        }
     }
 
     // MARK: - Table view data source
@@ -134,6 +142,10 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         default:
             return true
         }
+    }
+    
+    func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: Array<Dictionary<String, Dictionary<String, Any>>>) {
+        
     }
     
 }
