@@ -9,6 +9,8 @@
 import UIKit
 import Fabric
 import Crashlytics
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+       
         Fabric.with([Crashlytics.self])
+        GMSServices.provideAPIKey("AIzaSyCFVzymb-n8hnR4whPgCXkzWy_GITmnqoE")
+        GMSPlacesClient.provideAPIKey("AIzaSyCVlzc0N8QqkbYo940x-ZXwY7waXHYGHf8")
         
         UIView.appearance().tintColor = WIAColor.mainColor
         

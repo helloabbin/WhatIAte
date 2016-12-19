@@ -9,5 +9,7 @@ target 'WhatIAte' do
 
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end
