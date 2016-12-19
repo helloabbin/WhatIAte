@@ -12,6 +12,7 @@
 		ED2C60671E01206E00B6DECE /* WIAChooseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */; };
 		ED47E4CC1E03D7E80075C071 /* WIATagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED47E4CA1E03D7E80075C071 /* WIATagTableViewCell.swift */; };
 		ED47E4CD1E03D7E80075C071 /* WIATagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED47E4CB1E03D7E80075C071 /* WIATagTableViewCell.xib */; };
+		ED76263A1E07C770003ED2EB /* WIAMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7626391E07C770003ED2EB /* WIAMapsViewController.swift */; };
 		ED9B3A381E03ED46008E97CF /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A371E03ED46008E97CF /* TLTagsControl.m */; };
 		ED9B3A3A1E042A44008E97CF /* WIAWorkingDaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A391E042A44008E97CF /* WIAWorkingDaysTableViewController.swift */; };
 		ED9B3A3C1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A3B1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 		ED2C60661E01206E00B6DECE /* WIAChooseItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAChooseItemViewController.swift; sourceTree = "<group>"; };
 		ED47E4CA1E03D7E80075C071 /* WIATagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATagTableViewCell.swift; sourceTree = "<group>"; };
 		ED47E4CB1E03D7E80075C071 /* WIATagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATagTableViewCell.xib; sourceTree = "<group>"; };
+		ED7626391E07C770003ED2EB /* WIAMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAMapsViewController.swift; sourceTree = "<group>"; };
 		ED9B3A351E03ED46008E97CF /* WhatIAte-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhatIAte-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED9B3A361E03ED46008E97CF /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		ED9B3A371E03ED46008E97CF /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				ED263EA71E02910800C00071 /* WIAMakeItemViewController.swift */,
 				EDF67C081E03BD9F0041DF89 /* WIAMakePlaceViewController.swift */,
 				ED9B3A391E042A44008E97CF /* WIAWorkingDaysTableViewController.swift */,
+				ED7626391E07C770003ED2EB /* WIAMapsViewController.swift */,
 				EDFDA2181DFE7FFB00A1D244 /* SecondViewController.swift */,
 			);
 			name = ViewControllers;
@@ -385,6 +388,7 @@
 				ED9B3A3C1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift in Sources */,
 				EDF67C091E03BD9F0041DF89 /* WIAMakePlaceViewController.swift in Sources */,
 				ED47E4CC1E03D7E80075C071 /* WIATagTableViewCell.swift in Sources */,
+				ED76263A1E07C770003ED2EB /* WIAMapsViewController.swift in Sources */,
 				EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */,
 				EDFDA22A1DFE811D00A1D244 /* WIADiscoverViewController.swift in Sources */,
 				EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */,

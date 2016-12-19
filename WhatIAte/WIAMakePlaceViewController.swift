@@ -138,6 +138,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case WIAMakePlaceViewControllerSection.coordinates.rawValue:
+            performSegue(withIdentifier: "WIAMapsViewControllerSegue", sender: self)
             return false
         default:
             return true
