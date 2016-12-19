@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import Photos
 
 class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate {
 
     enum WIAReviewViewControllerSection: Int {
-        case item = 0
-        case place = 1
-        case rating = 2
-        case review = 3
+        case image = 0
+        case item = 1
+        case place = 2
+        case rating = 3
+        case review = 4
     }
+    
+    public var selectedAssets = [PHAsset]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib.init(nibName: "WIACollectionViewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIACollectionViewTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextViewCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewCellTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         tableView.keyboardDismissMode = .interactive
@@ -36,7 +41,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,7 +50,12 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == WIAReviewViewControllerSection.item.rawValue{
+        if indexPath.section == WIAReviewViewControllerSection.image.rawValue{
+            let cell : WIACollectionViewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIACollectionViewTableViewCell", for: indexPath) as! WIACollectionViewTableViewCell
+            cell.selectedAssets = selectedAssets
+            return cell
+        }
+        else if indexPath.section == WIAReviewViewControllerSection.item.rawValue{
             let cell : WIATextFieldTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath) as! WIATextFieldTableViewCell
             cell.delegate = self
             cell.cellIndexPath = indexPath
@@ -71,6 +81,8 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
+        case WIAReviewViewControllerSection.image.rawValue:
+            return 100
         case WIAReviewViewControllerSection.item.rawValue:
             return 44
         case WIAReviewViewControllerSection.place.rawValue:
@@ -86,6 +98,8 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
+        case WIAReviewViewControllerSection.image.rawValue:
+            return "Images"
         case WIAReviewViewControllerSection.item.rawValue:
             return "Item"
         case WIAReviewViewControllerSection.place.rawValue:

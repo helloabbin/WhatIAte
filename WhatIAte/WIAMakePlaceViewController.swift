@@ -25,7 +25,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         super.viewDidLoad()
         
         tableView.keyboardDismissMode = .interactive
-        
+        tableView.register(UINib.init(nibName: "WIAWorkingHoursTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIAWorkingHoursTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         tableView.register(UINib.init(nibName: "WIATagTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATagTableViewCell")
         
@@ -97,7 +97,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WIATextFieldTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WIAWorkingHoursTableViewCell", for: indexPath)
             return cell
         }
     }
@@ -118,6 +118,15 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             return "Working hours (optional)"
         default:
             return ""
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == WIAMakePlaceViewControllerSection.workinghours.rawValue {
+            return 68
+        }
+        else{
+            return 44
         }
     }
     

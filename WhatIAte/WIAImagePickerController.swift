@@ -58,6 +58,13 @@ class WIAImagePickerController: UIViewController, UICollectionViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WIAReviewTableViewControllerSegue" {
+            let reviewController : WIAReviewTableViewController = segue.destination as! WIAReviewTableViewController
+            reviewController.selectedAssets = selectedAssets
+        }
+    }
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - IBAction
     

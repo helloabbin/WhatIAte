@@ -152,7 +152,7 @@
                         <rightBarButtonItems>
                             <barButtonItem enabled="NO" title="Next" id="987-6s-09b">
                                 <connections>
-                                    <segue destination="cFM-sK-7Ia" kind="show" id="QvN-qv-3Kf"/>
+                                    <segue destination="cFM-sK-7Ia" kind="show" identifier="WIAReviewTableViewControllerSegue" id="QvN-qv-3Kf"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="camera" id="lym-6I-lHm">
@@ -408,10 +408,10 @@
             </objects>
             <point key="canvasLocation" x="5798" y="10"/>
         </scene>
-        <!--Add New Place details-->
+        <!--Add new Place details-->
         <scene sceneID="OxT-9E-3Ue">
             <objects>
-                <tableViewController title="Add New Place details" id="XRA-jc-jRN" customClass="WIAMakePlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Add new Place details" id="XRA-jc-jRN" customClass="WIAMakePlaceViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SMC-jJ-wxH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -567,10 +567,10 @@
             </objects>
             <point key="canvasLocation" x="5798" y="-633"/>
         </scene>
-        <!--Add New Item details-->
+        <!--Add new Item details-->
         <scene sceneID="djG-DO-AJH">
             <objects>
-                <tableViewController title="Add New Item details" id="JNc-xP-ymr" customClass="WIAMakeItemViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Add new Item details" id="JNc-xP-ymr" customClass="WIAMakeItemViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bnf-JD-d4R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

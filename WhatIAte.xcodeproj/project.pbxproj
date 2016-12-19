@@ -13,6 +13,12 @@
 		ED47E4CC1E03D7E80075C071 /* WIATagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED47E4CA1E03D7E80075C071 /* WIATagTableViewCell.swift */; };
 		ED47E4CD1E03D7E80075C071 /* WIATagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED47E4CB1E03D7E80075C071 /* WIATagTableViewCell.xib */; };
 		ED76263A1E07C770003ED2EB /* WIAMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7626391E07C770003ED2EB /* WIAMapsViewController.swift */; };
+		ED76263E1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76263C1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.swift */; };
+		ED76263F1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED76263D1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib */; };
+		ED7626431E07F73E003ED2EB /* WIACollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7626411E07F73E003ED2EB /* WIACollectionViewTableViewCell.swift */; };
+		ED7626441E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7626421E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib */; };
+		ED7626481E07F92E003ED2EB /* WIAImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7626461E07F92E003ED2EB /* WIAImageCollectionViewCell.swift */; };
+		ED7626491E07F92E003ED2EB /* WIAImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7626471E07F92E003ED2EB /* WIAImageCollectionViewCell.xib */; };
 		ED9B3A381E03ED46008E97CF /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A371E03ED46008E97CF /* TLTagsControl.m */; };
 		ED9B3A3A1E042A44008E97CF /* WIAWorkingDaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A391E042A44008E97CF /* WIAWorkingDaysTableViewController.swift */; };
 		ED9B3A3C1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A3B1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift */; };
@@ -50,6 +56,12 @@
 		ED47E4CA1E03D7E80075C071 /* WIATagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATagTableViewCell.swift; sourceTree = "<group>"; };
 		ED47E4CB1E03D7E80075C071 /* WIATagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATagTableViewCell.xib; sourceTree = "<group>"; };
 		ED7626391E07C770003ED2EB /* WIAMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAMapsViewController.swift; sourceTree = "<group>"; };
+		ED76263C1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAWorkingHoursTableViewCell.swift; sourceTree = "<group>"; };
+		ED76263D1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIAWorkingHoursTableViewCell.xib; sourceTree = "<group>"; };
+		ED7626411E07F73E003ED2EB /* WIACollectionViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIACollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		ED7626421E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIACollectionViewTableViewCell.xib; sourceTree = "<group>"; };
+		ED7626461E07F92E003ED2EB /* WIAImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		ED7626471E07F92E003ED2EB /* WIAImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIAImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		ED9B3A351E03ED46008E97CF /* WhatIAte-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhatIAte-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED9B3A361E03ED46008E97CF /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		ED9B3A371E03ED46008E97CF /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
@@ -157,6 +169,7 @@
 		ED2C60621DFFDCA600B6DECE /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				ED7626451E07F914003ED2EB /* ImageCell */,
 				EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */,
 			);
 			name = CollectionViewCell;
@@ -173,9 +186,38 @@
 			name = TagCell;
 			sourceTree = "<group>";
 		};
+		ED76263B1E07E290003ED2EB /* WorkingHours */ = {
+			isa = PBXGroup;
+			children = (
+				ED76263C1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.swift */,
+				ED76263D1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib */,
+			);
+			name = WorkingHours;
+			sourceTree = "<group>";
+		};
+		ED7626401E07F725003ED2EB /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				ED7626411E07F73E003ED2EB /* WIACollectionViewTableViewCell.swift */,
+				ED7626421E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		ED7626451E07F914003ED2EB /* ImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				ED7626461E07F92E003ED2EB /* WIAImageCollectionViewCell.swift */,
+				ED7626471E07F92E003ED2EB /* WIAImageCollectionViewCell.xib */,
+			);
+			name = ImageCell;
+			sourceTree = "<group>";
+		};
 		EDB21A0F1E0121BD003E5CA6 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				ED7626401E07F725003ED2EB /* CollectionView */,
+				ED76263B1E07E290003ED2EB /* WorkingHours */,
 				EDB21A1B1E016367003E5CA6 /* TextViewCell */,
 				EDB21A1A1E01635A003E5CA6 /* TextFieldCell */,
 				ED47E4CE1E03D7EE0075C071 /* TagCell */,
@@ -307,10 +349,13 @@
 			files = (
 				EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */,
 				EDB21A0E1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib in Resources */,
+				ED7626441E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib in Resources */,
 				EDFDA2211DFE7FFB00A1D244 /* LaunchScreen.storyboard in Resources */,
+				ED7626491E07F92E003ED2EB /* WIAImageCollectionViewCell.xib in Resources */,
 				EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */,
 				ED47E4CD1E03D7E80075C071 /* WIATagTableViewCell.xib in Resources */,
 				EDFDA21E1DFE7FFB00A1D244 /* Assets.xcassets in Resources */,
+				ED76263F1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib in Resources */,
 				EDFDA21C1DFE7FFB00A1D244 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,15 +442,18 @@
 				EDE121711E0274CB006F191B /* WIAManager.swift in Sources */,
 				ED9B3A381E03ED46008E97CF /* TLTagsControl.m in Sources */,
 				EDCEEE681DFE840A0076E249 /* PreviewView.swift in Sources */,
+				ED7626481E07F92E003ED2EB /* WIAImageCollectionViewCell.swift in Sources */,
 				EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */,
 				ED263EA81E02910800C00071 /* WIAMakeItemViewController.swift in Sources */,
 				ED9B3A3A1E042A44008E97CF /* WIAWorkingDaysTableViewController.swift in Sources */,
 				ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */,
 				ED2C60671E01206E00B6DECE /* WIAChooseItemViewController.swift in Sources */,
 				EDFDA2191DFE7FFB00A1D244 /* SecondViewController.swift in Sources */,
+				ED7626431E07F73E003ED2EB /* WIACollectionViewTableViewCell.swift in Sources */,
 				EDFDA2151DFE7FFB00A1D244 /* AppDelegate.swift in Sources */,
 				EDFDA22C1DFE821100A1D244 /* WIAImagePickerController.swift in Sources */,
 				EDB21A0D1E0121B5003E5CA6 /* WIATextFieldTableViewCell.swift in Sources */,
+				ED76263E1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
