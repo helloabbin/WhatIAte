@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate, WIAWorkingDaysTableViewControllerDelegate {
+class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate, WIAWorkingDaysTableViewControllerDelegate, WIAMapsViewControllerDelegate {
     
     enum WIAMakePlaceViewControllerSection: Int {
         case name = 0
@@ -46,6 +47,11 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         if segue.identifier == "WIAWorkingDaysTableViewControllerSegue" {
             let nav : UINavigationController = segue.destination as! UINavigationController
             let controller : WIAWorkingDaysTableViewController = nav.viewControllers.first as! WIAWorkingDaysTableViewController
+            controller.delegate = self
+        }
+        else if segue.identifier == "WIAMapsViewControllerSegue"{
+            let nav : UINavigationController = segue.destination as! UINavigationController
+            let controller : WIAMapsViewController = nav.viewControllers.first as! WIAMapsViewController
             controller.delegate = self
         }
     }
@@ -155,6 +161,11 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     }
     
     func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: Array<Dictionary<String, Dictionary<String, Any>>>) {
+        
+        
+    }
+    
+    func WIAMapsViewController(_ controller: WIAMapsViewController, didFinishWith location: CLLocation) {
         
     }
     

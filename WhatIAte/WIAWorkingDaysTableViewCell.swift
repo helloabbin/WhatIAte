@@ -10,8 +10,7 @@ import UIKit
 
 protocol WIAWorkingDaysTableViewCellDelegate {
     
-    func WIAWorkingDaysTableViewCell(cell : WIAWorkingDaysTableViewCell, didChange status : Bool, at indexPath : IndexPath)
-    
+    func WIAWorkingDaysTableViewCellDidChangeStatus(_ cell: WIAWorkingDaysTableViewCell, status:Bool, with indexPath: IndexPath)
 }
 
 class WIAWorkingDaysTableViewCell: UITableViewCell {
@@ -35,9 +34,7 @@ class WIAWorkingDaysTableViewCell: UITableViewCell {
     }
     
     @IBAction func switchDidChangeValue(_ sender: UISwitch) {
-        if let delegate = self.delegate {
-            return delegate.WIAWorkingDaysTableViewCell(cell: self, didChange: sender.isOn, at: cellIndexPath!)
-        }
+        delegate?.WIAWorkingDaysTableViewCellDidChangeStatus(self, status: sender.isOn, with: cellIndexPath!)
     }
 
 }

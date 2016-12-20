@@ -1,21 +1,22 @@
 //
-//  WIAChooseItemViewController.swift
+//  WIACuisineViewController.swift
 //  WhatIAte
 //
-//  Created by Abbin Varghese on 14/12/16.
+//  Created by Abbin Varghese on 20/12/16.
 //  Copyright © 2016 Abbin Varghese. All rights reserved.
 //
 
 import UIKit
-import CloudKit
 
-protocol WIAChooseItemViewControllerDelegate {
-    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishWith item: WIAItem)
+protocol WIACuisineViewControllerDelegate {
+    
+    func WIACuisineViewController(_ controller: WIACuisineViewController, didFinishPickingItem cuisine: WIACuisine)
+    
 }
 
-class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
-    var delegate: WIAChooseItemViewControllerDelegate?
+    var delegate: WIACuisineViewControllerDelegate?
     var searchResult = [AnyObject]()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,14 +32,6 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         searchBar.becomeFirstResponder()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "WIAMakeItemViewControllerSegue" {
-            let vc : WIAMakeItemViewController = segue.destination as! WIAMakeItemViewController
-            vc.itemName = searchResult.first! as! String
-            vc.delegate = delegate
-        }
-    }
-    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - IBAction
     
@@ -46,6 +39,7 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - UITableViewDataSource
@@ -55,11 +49,11 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WIAChooseItemViewControllerCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WIACuisineViewControllerCell", for: indexPath)
         
         let item = searchResult[indexPath.row]
         if  let obj = item as? String{
-            cell.textLabel?.text = "Add '\(obj)' as a new Item"
+            cell.textLabel?.text = "Add '\(obj)' as a new Cuisine"
             cell.detailTextLabel?.text = ""
         }
         
@@ -70,10 +64,21 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = searchResult[indexPath.row]
-        if  item is String {
-            performSegue(withIdentifier: "WIAMakeItemViewControllerSegue", sender: self)
-        }
+        dismiss(animated: true, completion: {
+            
+            if let delegate = self.delegate {
+                let item = self.searchResult[indexPath.row]
+                if  item is String {
+                    let cuisine = WIACuisine()
+                    cuisine.cuisineName = item as! String
+                    delegate.WIACuisineViewController(self, didFinishPickingItem: cuisine)
+                }
+                else{
+                    let cuisine : WIACuisine = self.searchResult[indexPath.row] as! WIACuisine
+                    delegate.WIACuisineViewController(self, didFinishPickingItem: cuisine)
+                }
+            }
+        })
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,17 +86,17 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        WIAManager.searchForItemWith(input: searchText, completion: { (result: [WIAItem], searchedText: String) in
+        WIAManager.searchForCuisineWith(input: searchText, completion: { (result: [WIACuisine], searchedText: String) in
             if result.count > 0 {
                 
             }
             else{
-                searchResult.removeAll()
+                searchResult .removeAll()
                 searchResult.append(searchedText as AnyObject)
                 searchResultTableView.reloadData()
             }
         })
         
     }
-    
+
 }

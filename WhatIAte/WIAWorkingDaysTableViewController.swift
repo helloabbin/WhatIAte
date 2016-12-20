@@ -112,7 +112,7 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
         return cell
     }
     
-    func WIAWorkingDaysTableViewCell(cell: WIAWorkingDaysTableViewCell, didChange status: Bool, at indexPath: IndexPath) {
+    func WIAWorkingDaysTableViewCellDidChangeStatus(_ cell: WIAWorkingDaysTableViewCell, status: Bool, with indexPath: IndexPath) {
         if status {
             daysArray.append(indexPath.row)
         }

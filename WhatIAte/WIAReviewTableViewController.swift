@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate {
+class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate, WIARatingTableViewCellDelegate {
 
     enum WIAReviewViewControllerSection: Int {
         case image = 0
@@ -19,7 +19,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
         case review = 4
     }
     
-    var selectedAssets = [PHAsset]()
+    var selectedAssets : Array<PHAsset>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == WIAReviewViewControllerSection.image.rawValue{
             let cell : WIACollectionViewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIACollectionViewTableViewCell", for: indexPath) as! WIACollectionViewTableViewCell
-            cell.selectedAssets = selectedAssets
+            cell.selectedAssets = selectedAssets!
             return cell
         }
         else if indexPath.section == WIAReviewViewControllerSection.item.rawValue{
@@ -70,6 +70,8 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
         }
         else if indexPath.section == WIAReviewViewControllerSection.rating.rawValue {
             let cell : WIARatingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIARatingTableViewCell", for: indexPath) as! WIARatingTableViewCell
+            cell.delegate = self
+            cell.cellIndexPath = indexPath
             return cell
         }
         else{
@@ -118,7 +120,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIATextFieldTableViewCellDelegate
     
-    func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
+    func WIATextFieldTableViewCellShouldBeginEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case WIAReviewViewControllerSection.item.rawValue:
             performSegue(withIdentifier: "WIAChooseItemViewControllerSegue", sender: self)
@@ -134,7 +136,15 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIAChooseItemViewControllerDelegate
     
-    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishPickingItem item: WIAItem) {
+    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishWith item: WIAItem) {
+        let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: WIAReviewViewControllerSection.item.rawValue)) as! WIATextFieldTableViewCell
+        cell.cellText = item.itemName
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIARatingTableViewCellDelegate
+    
+    func WIARatingTableViewCellDidChangeRating(_ cell: WIARatingTableViewCell, rating: Double, with indexPath: IndexPath) {
         
     }
 }

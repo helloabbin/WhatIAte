@@ -8,8 +8,16 @@
 
 import UIKit
 
-class WIATextViewCellTableViewCell: UITableViewCell {
+@objc protocol WIATextViewCellTableViewCellDelegate {
+    
+    @objc optional func WIATextViewCellTableViewCellDidChangeEditing(_ cell: WIATextViewCellTableViewCell, with text: String, with indexPath: IndexPath)
+}
 
+class WIATextViewCellTableViewCell: UITableViewCell, UITextViewDelegate {
+
+    var cellIndexPath: IndexPath?
+    var delegate: WIATextViewCellTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +27,11 @@ class WIATextViewCellTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let trimmed = textView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        delegate?.WIATextViewCellTableViewCellDidChangeEditing?(self, with: trimmed, with: cellIndexPath!)
     }
     
 }

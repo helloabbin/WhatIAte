@@ -9,12 +9,18 @@
 import UIKit
 import GoogleMaps
 
+protocol WIAMapsViewControllerDelegate {
+    func WIAMapsViewController(_ controller: WIAMapsViewController, didFinishWith location: CLLocation)
+}
+
 class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
+    
     let locationManager = CLLocationManager()
     var didFinishFirstLocationUpdate = false
     var currentLocation : CLLocation?
+    var delegate: WIAMapsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +46,8 @@ class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func doneWithMap(_ sender: Any) {
         dismiss(animated: true, completion: {
-            
+            let loc = self.mapView.camera.target
+            self.delegate?.WIAMapsViewController(self, didFinishWith: CLLocation.init(latitude: loc.latitude, longitude: loc.longitude))
         })
     }
     
@@ -65,15 +72,5 @@ class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

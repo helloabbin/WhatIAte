@@ -25,4 +25,11 @@ class WIAManager: NSObject {
         completion([], trimmed)
     }
     
+    class func searchForCuisineWith(input: String, completion: (_ results: [WIACuisine], _ searchedText: String) -> Void) {
+        let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
+        //        let capped = superTrimmed.lowercased()
+        completion([], trimmed)
+    }
+    
 }
