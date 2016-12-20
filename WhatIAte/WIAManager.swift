@@ -11,14 +11,14 @@ import CloudKit
 
 class WIAManager: NSObject {
     
-    class func searchForItemWith(input: String, completion: (_ results: [CKRecord], _ searchedText: String) -> Void) {
+    class func searchForItemWith(input: String, completion: (_ results: [WIAItem], _ searchedText: String) -> Void) {
         let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
 //        let capped = superTrimmed.lowercased()
         completion([], trimmed)
     }
     
-    class func searchForPlaceWith(input: String, completion: (_ results: [CKRecord], _ searchedText: String) -> Void) {
+    class func searchForPlaceWith(input: String, completion: (_ results: [WIAItem], _ searchedText: String) -> Void) {
         let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
         //        let capped = superTrimmed.lowercased()

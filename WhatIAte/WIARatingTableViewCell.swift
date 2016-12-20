@@ -31,12 +31,9 @@ class WIARatingTableViewCell: UITableViewCell {
         let tapgestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         panView.addGestureRecognizer(tapgestureRecognizer)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - IBAction
     
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
@@ -51,6 +48,9 @@ class WIARatingTableViewCell: UITableViewCell {
             updateView(value: (translation.x / panView.frame.size.width) * 10)
         }
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Other Methods
     
     func updateView(value : CGFloat) {
         if value > 9 {

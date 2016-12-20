@@ -33,17 +33,6 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         cellIndexPath = nil
@@ -51,6 +40,9 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         celltextField.placeholder = ""
         celltextField.text = ""
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if let delegate = self.delegate {

@@ -9,22 +9,20 @@
 import UIKit
 import Photos
 
-class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    fileprivate let imageManager = PHCachingImageManager()
-    public var selectedAssets = [PHAsset]()
     @IBOutlet weak var imageCollectionView: UICollectionView!
-
+    
+    let imageManager = PHCachingImageManager()
+    var selectedAssets = [PHAsset]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         imageCollectionView.register(UINib.init(nibName: "WIAImageCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "WIAImageCollectionViewCell")
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedAssets.count
@@ -53,6 +51,9 @@ class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSourc
         
         return cell
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let asset = selectedAssets[indexPath.row]

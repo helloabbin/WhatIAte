@@ -11,7 +11,7 @@ import CloudKit
 
 protocol WIAChooseItemViewControllerDelegate {
     
-    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishPickingItem item: CKRecord)
+    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishPickingItem item: WIAItem)
     
 }
 
@@ -23,14 +23,12 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultTableView: UITableView!
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - IBAction
+    
     @IBAction func cancelPicker(_ sender: Any) {
         searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,18 +40,17 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidAppear(animated)
         searchBar.becomeFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "WIAMakeItemViewControllerSegue" {
             let vc : WIAMakeItemViewController = segue.destination as! WIAMakeItemViewController
             vc.itemName = searchResult.first as! String?
+            vc.delegate = delegate
         }
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResult.count
@@ -71,6 +68,9 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = searchResult[indexPath.row]
         if  item is String {
@@ -78,9 +78,12 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UISearchBarDelegate
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        WIAManager.searchForItemWith(input: searchText, completion: { (result: [CKRecord], searchedText: String) in
+        WIAManager.searchForItemWith(input: searchText, completion: { (result: [WIAItem], searchedText: String) in
             if result.count > 0 {
                 
             }

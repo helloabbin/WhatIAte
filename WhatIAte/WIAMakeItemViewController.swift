@@ -17,10 +17,14 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         case description = 3
     }
     
+    var delegate: WIAChooseItemViewControllerDelegate?
     var itemName : String?
+    var itemObject = WIAItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        itemObject.itemName = itemName!
         
         tableView.keyboardDismissMode = .interactive
         tableView.register(UINib.init(nibName: "WIATextViewCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewCellTableViewCell")
@@ -31,13 +35,16 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     }
     
     func doneButtonClicked() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            if let delegate = self.delegate {
+                let controller : WIAChooseItemViewController = self.navigationController?.viewControllers.first as! WIAChooseItemViewController
+                delegate.WIAChooseItemViewController(controller, didFinishPickingItem: self.itemObject)
+            }
+        })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -76,6 +83,9 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDelegate
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case WIAMakeItemViewControllerSection.name.rawValue:
@@ -106,6 +116,9 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIATextFieldTableViewCellDelegate
+    
     func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case WIAMakeItemViewControllerSection.name.rawValue, WIAMakeItemViewControllerSection.price.rawValue:
@@ -114,16 +127,5 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
             return false
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
