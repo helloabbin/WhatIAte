@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CloudKit
 
 class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
 
@@ -75,8 +74,8 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        WIAManager.searchForItemWith(input: searchText, completion: { (result: [WIAItem], searchedText: String) in
-            if result.count > 0 {
+        WIAManager.searchForPlace(searchText: searchText) { (results, searchedText) in
+            if results.count > 0 {
                 
             }
             else{
@@ -84,7 +83,7 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
                 searchResult.append(searchedText as AnyObject)
                 searchTableView.reloadData()
             }
-        })
+        }
         
     }
 

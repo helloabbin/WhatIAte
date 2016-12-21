@@ -138,7 +138,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishWith item: WIAItem) {
         let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: WIAReviewViewControllerSection.item.rawValue)) as! WIATextFieldTableViewCell
-        cell.cellText = item.itemName
+        cell.cellText = item.name
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

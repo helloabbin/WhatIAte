@@ -10,15 +10,32 @@ import UIKit
 
 class WIAItem: NSObject {
     
-    var itemName: String
-    var itemPrice: Double
-    var itemCuisine: WIACuisine
-    var itemDescription: String
+    var name: String
     
-    override init() {
-        itemName = ""
-        itemPrice = 0.0
-        itemCuisine = WIACuisine()
-        itemDescription = ""
+    var price: Double
+    
+    var cuisine: WIACuisine
+    
+    var shortDescription: String
+    
+    var cappedName: String {
+        get {
+            let trimmed = name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
+            let capped = superTrimmed.lowercased()
+            return capped
+        }
+    }
+    
+    init(name: String, price: Double, cuisine:WIACuisine, shortDescription: String?) {
+        self.name = name
+        self.price = price
+        self.cuisine = cuisine
+        if let optionalShortDescription = shortDescription {
+            self.shortDescription = optionalShortDescription
+        }
+        else{
+            self.shortDescription = ""
+        }
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CloudKit
 
 protocol WIAChooseItemViewControllerDelegate {
     func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishWith item: WIAItem)
@@ -81,8 +80,8 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        WIAManager.searchForItemWith(input: searchText, completion: { (result: [WIAItem], searchedText: String) in
-            if result.count > 0 {
+        WIAManager.searchForItem(searchText: searchText) { (results, searchedText) in
+            if results.count > 0 {
                 
             }
             else{
@@ -90,7 +89,7 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
                 searchResult.append(searchedText as AnyObject)
                 searchResultTableView.reloadData()
             }
-        })
+        }
         
     }
     

@@ -35,6 +35,7 @@
 		EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE631DFE840A0076E249 /* CameraViewController.swift */; };
 		EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */; };
 		EDCEEE681DFE840A0076E249 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE651DFE840A0076E249 /* PreviewView.swift */; };
+		EDD253301E0AD768005B1A37 /* WIAPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2532F1E0AD768005B1A37 /* WIAPlace.swift */; };
 		EDDB47E71DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */; };
 		EDE121711E0274CB006F191B /* WIAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE121701E0274CB006F191B /* WIAManager.swift */; };
 		EDF051EC1E08F5430036CA87 /* WIAItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF051EB1E08F5430036CA87 /* WIAItem.swift */; };
@@ -83,6 +84,7 @@
 		EDCEEE631DFE840A0076E249 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDCEEE641DFE840A0076E249 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		EDCEEE651DFE840A0076E249 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		EDD2532F1E0AD768005B1A37 /* WIAPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAPlace.swift; sourceTree = "<group>"; };
 		EDDB47E61DFECAB400CB3A0F /* WIAImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		EDE121701E0274CB006F191B /* WIAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAManager.swift; sourceTree = "<group>"; };
 		EDF051EB1E08F5430036CA87 /* WIAItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAItem.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				EDE121701E0274CB006F191B /* WIAManager.swift */,
 				EDF051EB1E08F5430036CA87 /* WIAItem.swift */,
 				EDAB68A01E09154C00D67EBE /* WIACuisine.swift */,
+				EDD2532F1E0AD768005B1A37 /* WIAPlace.swift */,
 				ED2C605E1DFFDC5700B6DECE /* UIElements */,
 				ED2C605D1DFFDC4A00B6DECE /* ViewControllers */,
 				EDFDA21A1DFE7FFB00A1D244 /* Main.storyboard */,
@@ -442,6 +445,7 @@
 				EDCEEE671DFE840A0076E249 /* PhotoCaptureDelegate.swift in Sources */,
 				ED9B3A3C1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift in Sources */,
 				EDF67C091E03BD9F0041DF89 /* WIAMakePlaceViewController.swift in Sources */,
+				EDD253301E0AD768005B1A37 /* WIAPlace.swift in Sources */,
 				ED47E4CC1E03D7E80075C071 /* WIATagTableViewCell.swift in Sources */,
 				ED76263A1E07C770003ED2EB /* WIAMapsViewController.swift in Sources */,
 				EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */,

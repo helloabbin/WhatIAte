@@ -9,9 +9,7 @@
 import UIKit
 
 protocol WIACuisineViewControllerDelegate {
-    
-    func WIACuisineViewController(_ controller: WIACuisineViewController, didFinishPickingItem cuisine: WIACuisine)
-    
+    func WIACuisineViewController(_ controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine)
 }
 
 class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -69,13 +67,12 @@ class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableV
             if let delegate = self.delegate {
                 let item = self.searchResult[indexPath.row]
                 if  item is String {
-                    let cuisine = WIACuisine()
-                    cuisine.cuisineName = item as! String
-                    delegate.WIACuisineViewController(self, didFinishPickingItem: cuisine)
+                    let cuisine = WIACuisine(name: item as! String)
+                    delegate.WIACuisineViewController(self, didFinishWith: cuisine)
                 }
                 else{
                     let cuisine : WIACuisine = self.searchResult[indexPath.row] as! WIACuisine
-                    delegate.WIACuisineViewController(self, didFinishPickingItem: cuisine)
+                    delegate.WIACuisineViewController(self, didFinishWith: cuisine)
                 }
             }
         })
@@ -86,8 +83,8 @@ class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableV
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        WIAManager.searchForCuisineWith(input: searchText, completion: { (result: [WIACuisine], searchedText: String) in
-            if result.count > 0 {
+        WIAManager.searchForCuisine(searchText: searchText) { (results, searchedText) in
+            if results.count > 0 {
                 
             }
             else{
@@ -95,7 +92,7 @@ class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableV
                 searchResult.append(searchedText as AnyObject)
                 searchResultTableView.reloadData()
             }
-        })
+        }
         
     }
 

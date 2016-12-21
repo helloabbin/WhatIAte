@@ -7,28 +7,27 @@
 //
 
 import UIKit
-import CloudKit
 
 class WIAManager: NSObject {
     
-    class func searchForItemWith(input: String, completion: (_ results: [WIAItem], _ searchedText: String) -> Void) {
-        let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    class func searchForItem(searchText:String, completion:(_ results: [WIAItem], _ searchedText: String) -> Void) {
+        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
 //        let capped = superTrimmed.lowercased()
         completion([], trimmed)
     }
     
-    class func searchForPlaceWith(input: String, completion: (_ results: [WIAItem], _ searchedText: String) -> Void) {
-        let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-        //        let capped = superTrimmed.lowercased()
+    class func searchForPlace(searchText:String, completion:(_ results: [WIAPlace], _ searchedText: String) -> Void) {
+        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
+//        let capped = superTrimmed.lowercased()
         completion([], trimmed)
     }
     
-    class func searchForCuisineWith(input: String, completion: (_ results: [WIACuisine], _ searchedText: String) -> Void) {
-        let trimmed = input.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        //        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-        //        let capped = superTrimmed.lowercased()
+    class func searchForCuisine(searchText:String, completion:(_ results: [WIACuisine], _ searchedText: String) -> Void) {
+        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
+//        let capped = superTrimmed.lowercased()
         completion([], trimmed)
     }
     
