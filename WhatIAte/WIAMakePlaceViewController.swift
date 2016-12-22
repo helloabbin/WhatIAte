@@ -21,7 +21,12 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     }
     
     var placeName : String!
+    var placeAddress : String!
+    var placeCoordinates : CLLocation!
+    var placePhoneNumbers : [String]?
     var placeWorkingDays : [[String : [String : Any]]]?
+    var placeWokingFrom : Date?
+    var placeWorkingTill : Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +38,6 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         
         let saveButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneButtonClicked))
         navigationItem.rightBarButtonItem = saveButton
-    }
-    
-    func doneButtonClicked() {
-        dismiss(animated: true, completion: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,8 +53,16 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             controller.delegate = self
         }
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - IBAction
+    
+    func doneButtonClicked() {
+        dismiss(animated: true, completion: nil)
+    }
 
-    // MARK: - Table view data source
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 6
@@ -67,7 +71,6 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == WIAMakePlaceViewControllerSection.name.rawValue {
@@ -110,6 +113,9 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDelegate
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case WIAMakePlaceViewControllerSection.name.rawValue:
@@ -138,8 +144,11 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - TLTagsControlDelegate
+    
     func tagsControl(_ tagsControl: TLTagsControl!, didUpdateTags tagArray: [String]!, with indexPath: IndexPath!) {
-        
+        placePhoneNumbers = tagArray
     }
     
     func tagsControlShouldBeginEditing(_ tagsControl: TLTagsControl!, with indexPath: IndexPath!) -> Bool {
@@ -149,6 +158,20 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         else{
             performSegue(withIdentifier: "WIAWorkingDaysTableViewControllerSegue", sender: self)
             return false
+        }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIATextFieldTableViewCellDelegate
+    
+    func WIATextFieldTableViewCellDidChangeEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) {
+        switch indexPath.section {
+        case WIAMakePlaceViewControllerSection.name.rawValue:
+            placeName = cell.cellText
+        case WIAMakePlaceViewControllerSection.address.rawValue:
+            placeAddress = cell.cellText
+        default:
+            break
         }
     }
     
@@ -162,13 +185,27 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIAWorkingDaysTableViewControllerDelegate
+    
     func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: [[String : [String : Any]]]) {
         placeWorkingDays = workingDays
-        print(placeWorkingDays ?? "")
+        var daysArray = [String]()
+        for dict in placeWorkingDays! {
+            let openDict = dict["open"]
+            let dayName = openDict?["dayName"]
+            daysArray.append(dayName as! String)
+        }
+        
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIAMapsViewControllerDelegate
+    
     func WIAMapsViewController(controller: WIAMapsViewController, didFinishWith location: CLLocation) {
-        
+        placeCoordinates = location
+        let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: WIAMakePlaceViewControllerSection.coordinates.rawValue)) as! WIATextFieldTableViewCell
+        cell.cellText = "\(placeCoordinates.coordinate.latitude), \(placeCoordinates.coordinate.longitude)"
     }
     
 }

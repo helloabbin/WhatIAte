@@ -20,6 +20,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     }
     
     var selectedAssets : [PHAsset]!
+    var itemObject : WIAItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +141,8 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     func WIAChooseItemViewController(controller: WIAChooseItemViewController, didFinishWith item: WIAItem) {
         let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: WIAReviewViewControllerSection.item.rawValue)) as! WIATextFieldTableViewCell
-        cell.cellText = item.name
+        itemObject = item
+        cell.cellText = itemObject.name
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
