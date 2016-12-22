@@ -9,7 +9,9 @@
 import UIKit
 
 protocol WIACuisineViewControllerDelegate {
-    func WIACuisineViewController(_ controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine)
+    
+    func WIACuisineViewController(controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine)
+    
 }
 
 class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -68,11 +70,11 @@ class WIACuisineViewController: UIViewController,UITableViewDataSource, UITableV
                 let item = self.searchResult[indexPath.row]
                 if  item is String {
                     let cuisine = WIACuisine(name: item as! String)
-                    delegate.WIACuisineViewController(self, didFinishWith: cuisine)
+                    delegate.WIACuisineViewController(controller: self, didFinishWith: cuisine)
                 }
                 else{
                     let cuisine : WIACuisine = self.searchResult[indexPath.row] as! WIACuisine
-                    delegate.WIACuisineViewController(self, didFinishWith: cuisine)
+                    delegate.WIACuisineViewController(controller: self, didFinishWith: cuisine)
                 }
             }
         })

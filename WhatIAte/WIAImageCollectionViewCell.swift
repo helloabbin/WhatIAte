@@ -12,6 +12,7 @@ import Photos
 class WIAImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var imageView: UIImageView!
+    
     var representedAssetIdentifier: String!
     
     override func awakeFromNib() {
@@ -19,7 +20,7 @@ class WIAImageCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    var thumbnailImage: UIImage! {
+    var thumbnailImage: UIImage? {
         didSet {
             imageView.image = thumbnailImage
         }

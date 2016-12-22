@@ -10,7 +10,8 @@ import UIKit
 
 protocol WIARatingTableViewCellDelegate {
     
-    func WIARatingTableViewCellDidChangeRating(_ cell: WIARatingTableViewCell, rating: Double, with indexPath: IndexPath)
+    func WIARatingTableViewCellDidChangeRating(cell: WIARatingTableViewCell, rating: Double, indexPath: IndexPath)
+    
 }
 
 class WIARatingTableViewCell: UITableViewCell {
@@ -73,7 +74,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "5.0"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 5.0, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 5.0, indexPath: cellIndexPath!)
         }
         else if value > 8 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -87,7 +88,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "4.5"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 4.5, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 4.5, indexPath: cellIndexPath!)
         }
         else if value > 7 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -101,7 +102,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "4.0"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 4.0, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 4.0, indexPath: cellIndexPath!)
         }
         else if value > 6 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -115,7 +116,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "3.5"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 3.5, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 3.5, indexPath: cellIndexPath!)
         }
         else if value > 5 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -129,7 +130,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "3.0"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 3.0, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 3.0, indexPath: cellIndexPath!)
         }
         else if value > 4 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -143,7 +144,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "2.5"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 2.5, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 2.5, indexPath: cellIndexPath!)
         }
         else if value > 3 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -157,7 +158,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "2.0"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 2.0, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 2.0, indexPath: cellIndexPath!)
         }
         else if value > 2 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -171,7 +172,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "1.5"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 1.5, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 1.5, indexPath: cellIndexPath!)
         }
         else if value > 1 {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -185,7 +186,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = WIAColor.colorFor(Value: 2)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "1.0"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 1.0, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 1.0, indexPath: cellIndexPath!)
         }
         else {
             tenView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
@@ -199,7 +200,7 @@ class WIARatingTableViewCell: UITableViewCell {
             twoView.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
             oneView.backgroundColor = WIAColor.colorFor(Value: 1)
             ratingLabel.text = "0.5"
-            delegate?.WIARatingTableViewCellDidChangeRating(self, rating: 0.5, with: cellIndexPath!)
+            delegate?.WIARatingTableViewCellDidChangeRating(cell: self, rating: 0.5, indexPath: cellIndexPath!)
         }
     }
 

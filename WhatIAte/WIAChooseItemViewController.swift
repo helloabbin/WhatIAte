@@ -9,12 +9,14 @@
 import UIKit
 
 protocol WIAChooseItemViewControllerDelegate {
-    func WIAChooseItemViewController(_ controller: WIAChooseItemViewController, didFinishWith item: WIAItem)
+    
+    func WIAChooseItemViewController(controller: WIAChooseItemViewController, didFinishWith item: WIAItem)
+    
 }
 
 class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    var delegate: WIAChooseItemViewControllerDelegate?
+    var delegate: WIAChooseItemViewControllerDelegate!
     var searchResult = [AnyObject]()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -33,7 +35,7 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "WIAMakeItemViewControllerSegue" {
             let vc : WIAMakeItemViewController = segue.destination as! WIAMakeItemViewController
-            vc.itemName = searchResult.first! as! String
+            vc.itemName = searchResult.first as! String?
             vc.delegate = delegate
         }
     }
@@ -57,9 +59,12 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "WIAChooseItemViewControllerCell", for: indexPath)
         
         let item = searchResult[indexPath.row]
-        if  let obj = item as? String{
+        if  let obj = item as? String {
             cell.textLabel?.text = "Add '\(obj)' as a new Item"
             cell.detailTextLabel?.text = ""
+        }
+        else {
+            
         }
         
         return cell
@@ -72,6 +77,9 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
         let item = searchResult[indexPath.row]
         if  item is String {
             performSegue(withIdentifier: "WIAMakeItemViewControllerSegue", sender: self)
+        }
+        else {
+            
         }
     }
     

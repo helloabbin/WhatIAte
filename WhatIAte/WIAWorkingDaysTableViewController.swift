@@ -9,7 +9,9 @@
 import UIKit
 
 protocol WIAWorkingDaysTableViewControllerDelegate {
-    func WIAWorkingDaysTableViewController(controller : WIAWorkingDaysTableViewController, didFinishWith workingDays : Array<Dictionary<String, Dictionary<String, Any>>>)
+    
+    func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: [[String : [String : Any]]])
+    
 }
 
 class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTableViewCellDelegate {
@@ -24,10 +26,10 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
         case saturday
     }
     
-    var workingDaysArray = [[String:[String:Int]]]()
-    private var daysArray = [Int]()
+    var workingDaysArray: [[String : [String : Any]]]?
+    var daysArray = [Int]()
     
-    var delegate: WIAWorkingDaysTableViewControllerDelegate?
+    var delegate: WIAWorkingDaysTableViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +39,11 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
         let cacnel = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(cancelButtonClicked))
         navigationItem.leftBarButtonItem = cacnel
         
-        for dict in workingDaysArray {
+        for dict in workingDaysArray ?? [] {
             let day = dict["close"]? ["day"]
-            daysArray.append(day!)
+            daysArray.append(day as! Int)
         }
+        print(daysArray)
     }
     
     func cancelButtonClicked() {
@@ -48,7 +51,7 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
     }
     
     func doneButtonClicked() {
-        var arrayOfDays = [[String:[String : Any]]]()
+        var arrayOfDays = [[String : [String : Any]]]()
         for num in daysArray {
             
             let dateFormater = DateFormatter()
@@ -109,15 +112,22 @@ class WIAWorkingDaysTableViewController: UITableViewController, WIAWorkingDaysTa
         cell.cellIndexPath = indexPath
         cell.delegate = self
         
+        if daysArray.contains(indexPath.row) {
+            cell.isOn = true
+        }
+        else{
+            cell.isOn = false
+        }
+        
         return cell
     }
     
-    func WIAWorkingDaysTableViewCellDidChangeStatus(_ cell: WIAWorkingDaysTableViewCell, status: Bool, with indexPath: IndexPath) {
+    func WIAWorkingDaysTableViewCellDidChangeStatus(cell: WIAWorkingDaysTableViewCell, status: Bool, indexPath: IndexPath) {
         if status {
             daysArray.append(indexPath.row)
         }
         else {
-            daysArray.remove(at: indexPath.row)
+            daysArray.remove(at: daysArray.index(of: indexPath.row)!)
         }
     }
     

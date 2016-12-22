@@ -12,16 +12,17 @@ import CoreLocation
 class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCellDelegate, TLTagsControlDelegate, WIAWorkingDaysTableViewControllerDelegate, WIAMapsViewControllerDelegate {
     
     enum WIAMakePlaceViewControllerSection: Int {
-        case name = 0
-        case address = 1
-        case coordinates = 2
-        case phoneNumber = 3
-        case workingDays = 4
-        case workinghours = 5
+        case name
+        case address
+        case coordinates
+        case phoneNumber
+        case workingDays
+        case workinghours
     }
     
-    var placeName : String?
-
+    var placeName : String!
+    var placeWorkingDays : [[String : [String : Any]]]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +49,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             let nav : UINavigationController = segue.destination as! UINavigationController
             let controller : WIAWorkingDaysTableViewController = nav.viewControllers.first as! WIAWorkingDaysTableViewController
             controller.delegate = self
+            controller.workingDaysArray = placeWorkingDays
         }
         else if segue.identifier == "WIAMapsViewControllerSegue"{
             let nav : UINavigationController = segue.destination as! UINavigationController
@@ -150,7 +152,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         }
     }
     
-    func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldBeginEditingRowAt indexPath: IndexPath) -> Bool {
+    func WIATextFieldTableViewCellShouldBeginEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case WIAMakePlaceViewControllerSection.coordinates.rawValue:
             performSegue(withIdentifier: "WIAMapsViewControllerSegue", sender: self)
@@ -160,12 +162,12 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         }
     }
     
-    func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: Array<Dictionary<String, Dictionary<String, Any>>>) {
-        
-        
+    func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: [[String : [String : Any]]]) {
+        placeWorkingDays = workingDays
+        print(placeWorkingDays ?? "")
     }
     
-    func WIAMapsViewController(_ controller: WIAMapsViewController, didFinishWith location: CLLocation) {
+    func WIAMapsViewController(controller: WIAMapsViewController, didFinishWith location: CLLocation) {
         
     }
     

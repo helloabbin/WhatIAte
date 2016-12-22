@@ -51,7 +51,7 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "WIAChoosePlaceViewControllerCell", for: indexPath)
         
         let item = searchResult[indexPath.row]
-        if  let obj = item as? String{
+        if  let obj = item as? String {
             cell.textLabel?.text = "Add '\(obj)' as a new Place"
             cell.detailTextLabel?.text = ""
         }

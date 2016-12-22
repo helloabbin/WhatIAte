@@ -10,38 +10,45 @@ import UIKit
 
 @objc protocol WIATextFieldTableViewCellDelegate {
     
-    @objc optional func WIATextFieldTableViewCellDidChangeEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath)
+    @objc optional func WIATextFieldTableViewCellDidChangeEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath)
     
-    @objc optional func WIATextFieldTableViewCellShouldBeginEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) -> Bool
+    @objc optional func WIATextFieldTableViewCellShouldBeginEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) -> Bool
     
-    @objc optional func WIATextFieldTableViewCellDidBeginEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath)
-    @objc optional func WIATextFieldTableViewCellDidEndEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath)
+    @objc optional func WIATextFieldTableViewCellDidBeginEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath)
     
-    @objc optional func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldChangeCharactersIn range: NSRange, replacementString string: String, with indexPath: IndexPath) -> Bool
+    @objc optional func WIATextFieldTableViewCellDidEndEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath)
+    
+    @objc optional func WIATextFieldTableViewCell(cell: WIATextFieldTableViewCell, shouldChangeCharactersIn range: NSRange, replacementString string: String, indexPath: IndexPath) -> Bool
 }
 
 class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var celltextField: UITextField!
     
-    var cellIndexPath: IndexPath?
+    var cellIndexPath: IndexPath!
     var delegate: WIATextFieldTableViewCellDelegate?
     
-    var cellKeyboardType: UIKeyboardType! {
-        didSet {
-            celltextField.keyboardType = cellKeyboardType
+    var cellKeyboardType: UIKeyboardType {
+        get {
+            return celltextField.keyboardType
+        }
+        set {
+            celltextField.keyboardType = newValue
         }
     }
     
-    var cellPlaceHolder: String! {
+    var cellPlaceHolder: String? {
         didSet {
             celltextField.placeholder = cellPlaceHolder
         }
     }
     
-    var cellText: String! {
-        didSet {
-            celltextField.text = cellText
+    var cellText: String? {
+        get {
+            return celltextField.text
+        }
+        set {
+            celltextField.text = newValue
         }
     }
     
@@ -58,7 +65,7 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if  let bool = delegate?.WIATextFieldTableViewCellShouldBeginEditing?(self, with: cellIndexPath!){
+        if  let bool = delegate?.WIATextFieldTableViewCellShouldBeginEditing?(cell: self, indexPath: cellIndexPath) {
             return bool
         }
         else{
@@ -67,15 +74,15 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.WIATextFieldTableViewCellDidBeginEditing?(self, with: cellIndexPath!)
+        delegate?.WIATextFieldTableViewCellDidBeginEditing?(cell: self, indexPath: cellIndexPath)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.WIATextFieldTableViewCellDidEndEditing?(self, with: cellIndexPath!)
+        delegate?.WIATextFieldTableViewCellDidEndEditing?(cell: self, indexPath: cellIndexPath)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let bool = delegate?.WIATextFieldTableViewCell?(self, shouldChangeCharactersIn: range, replacementString: string, with: cellIndexPath!) {
+        if let bool = delegate?.WIATextFieldTableViewCell?(cell: self, shouldChangeCharactersIn: range, replacementString: string, indexPath: cellIndexPath) {
             return bool
         }
         else{
@@ -84,7 +91,7 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
-        delegate?.WIATextFieldTableViewCellDidChangeEditing?(self, with: cellIndexPath!)
+        delegate?.WIATextFieldTableViewCellDidChangeEditing?(cell: self, indexPath: cellIndexPath)
     }
     
 }

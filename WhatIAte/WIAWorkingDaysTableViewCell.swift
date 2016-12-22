@@ -10,31 +10,35 @@ import UIKit
 
 protocol WIAWorkingDaysTableViewCellDelegate {
     
-    func WIAWorkingDaysTableViewCellDidChangeStatus(_ cell: WIAWorkingDaysTableViewCell, status:Bool, with indexPath: IndexPath)
+    func WIAWorkingDaysTableViewCellDidChangeStatus(cell: WIAWorkingDaysTableViewCell, status: Bool, indexPath: IndexPath)
+    
 }
 
 class WIAWorkingDaysTableViewCell: UITableViewCell {
 
-    var cellIndexPath: IndexPath?
+    var cellIndexPath: IndexPath!
     var delegate: WIAWorkingDaysTableViewCellDelegate?
     
     @IBOutlet weak var cellSwitch: UISwitch!
     @IBOutlet weak var cellTextLabel: UILabel!
     
-    var cellText: String! {
+    var cellText: String? {
         didSet {
             cellTextLabel.text = cellText
         }
     }
     
-    var isOn: Bool! {
-        didSet {
-            cellSwitch.isOn = isOn
+    var isOn: Bool {
+        get {
+            return cellSwitch.isOn
+        }
+        set {
+            cellSwitch.isOn = newValue
         }
     }
     
     @IBAction func switchDidChangeValue(_ sender: UISwitch) {
-        delegate?.WIAWorkingDaysTableViewCellDidChangeStatus(self, status: sender.isOn, with: cellIndexPath!)
+        delegate?.WIAWorkingDaysTableViewCellDidChangeStatus(cell: self, status: sender.isOn, indexPath: cellIndexPath)
     }
 
 }

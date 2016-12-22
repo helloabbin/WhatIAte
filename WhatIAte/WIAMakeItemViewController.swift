@@ -11,18 +11,18 @@ import UIKit
 class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIATextViewCellTableViewCellDelegate, WIACuisineViewControllerDelegate {
     
     enum WIAMakeItemViewControllerSection: Int {
-        case name = 0
-        case price = 1
-        case cuisine = 2
-        case description = 3
+        case name
+        case price
+        case cuisine
+        case description
     }
     
-    var delegate: WIAChooseItemViewControllerDelegate?
+    var delegate: WIAChooseItemViewControllerDelegate!
     
-    var itemName : String = ""
-    var itemPrice : Double = 0.0
-    var itemCuisine : WIACuisine?
-    var itemDescription : String = ""
+    var itemName : String!
+    var itemPrice : Double!
+    var itemCuisine : WIACuisine!
+    var itemDescription : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +44,12 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     }
     
     func doneButtonClicked() {
-        if itemName.isEmpty {
+        if itemName == nil {
             let alert = UIAlertController.init(title: "Name missing?", message: "Please enter Name of the Item", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
-        else if itemPrice == 0 {
+        else if itemPrice == nil {
             let alert = UIAlertController.init(title: "Price missing?", message: "Please enter Price of the Item", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -63,9 +63,9 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
             tableView.endEditing(false)
             dismiss(animated: true, completion: {
                 if let delegate = self.delegate {
-                    let item = WIAItem(name: self.itemName, price: self.itemPrice, cuisine: self.itemCuisine!, shortDescription: self.itemDescription)
+                    let item = WIAItem(name: self.itemName!, price: self.itemPrice!, cuisine: self.itemCuisine!, shortDescription: self.itemDescription)
                     let controller : WIAChooseItemViewController = self.navigationController!.viewControllers.first as! WIAChooseItemViewController
-                    delegate.WIAChooseItemViewController(controller, didFinishWith: item)
+                    delegate.WIAChooseItemViewController(controller: controller, didFinishWith: item)
                 }
             })
         }
@@ -150,7 +150,7 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIATextFieldTableViewCellDelegate
     
-    func WIATextFieldTableViewCellShouldBeginEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) -> Bool {
+    func WIATextFieldTableViewCellShouldBeginEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case WIAMakeItemViewControllerSection.name.rawValue, WIAMakeItemViewControllerSection.price.rawValue:
             return true
@@ -162,40 +162,35 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         }
     }
     
-    func WIATextFieldTableViewCellDidChangeEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) {
+    func WIATextFieldTableViewCellDidChangeEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) {
         switch indexPath.section {
         case WIAMakeItemViewControllerSection.name.rawValue:
             itemName = cell.cellText
         case WIAMakeItemViewControllerSection.price.rawValue:
-            let superTrimmed = cell.celltextField.text?.replacingOccurrences(of: NSLocale.current.currencySymbol!, with: "")
-            if let price = Double(superTrimmed!) {
-                itemPrice = price
-            }
-            else{
-                itemPrice = 0.0
-            }
+            let superTrimmed = cell.cellText?.replacingOccurrences(of: NSLocale.current.currencySymbol!, with: "")
+            itemPrice = Double(superTrimmed!)
         default:
             break
         }
     }
     
-    func WIATextFieldTableViewCellDidBeginEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) {
+    func WIATextFieldTableViewCellDidBeginEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) {
         if indexPath.section == WIAMakeItemViewControllerSection.price.rawValue {
-            if cell.celltextField.text == "" {
-                cell.celltextField.text = NSLocale.current.currencySymbol
+            if cell.cellText == "" {
+                cell.cellText = NSLocale.current.currencySymbol
             }
         }
     }
     
-    func WIATextFieldTableViewCellDidEndEditing(_ cell: WIATextFieldTableViewCell, with indexPath: IndexPath) {
+    func WIATextFieldTableViewCellDidEndEditing(cell: WIATextFieldTableViewCell, indexPath: IndexPath) {
         if indexPath.section == WIAMakeItemViewControllerSection.price.rawValue {
-            if cell.celltextField.text == NSLocale.current.currencySymbol {
-                cell.celltextField.text = ""
+            if cell.cellText == NSLocale.current.currencySymbol {
+                cell.cellText = ""
             }
         }
     }
     
-    func WIATextFieldTableViewCell(_ cell: WIATextFieldTableViewCell, shouldChangeCharactersIn range: NSRange, replacementString string: String, with indexPath: IndexPath) -> Bool {
+    func WIATextFieldTableViewCell(cell: WIATextFieldTableViewCell, shouldChangeCharactersIn range: NSRange, replacementString string: String, indexPath: IndexPath) -> Bool {
         if indexPath.section == WIAMakeItemViewControllerSection.price.rawValue {
             if (range.location == 0 && range.length == 1) || (range.location > 6 && range.length == 0) {
                 return false
@@ -212,17 +207,17 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIATextViewCellTableViewCellDelegate
     
-    func WIATextViewCellTableViewCellDidChangeEditing(_ cell: WIATextViewCellTableViewCell, with text: String, with indexPath: IndexPath) {
-        itemDescription = text
+    func WIATextViewCellTableViewCellDidChangeEditing(cell: WIATextViewCellTableViewCell, string: String, with indexPath: IndexPath) {
+        itemDescription = string
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIACuisineViewControllerDelegate
     
-    func WIACuisineViewController(_ controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine) {
+    func WIACuisineViewController(controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine) {
         itemCuisine = cuisine
         let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: WIAMakeItemViewControllerSection.cuisine.rawValue)) as! WIATextFieldTableViewCell
-        cell.cellText = itemCuisine?.name
+        cell.cellText = itemCuisine.name
     }
     
 }

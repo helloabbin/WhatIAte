@@ -10,7 +10,9 @@ import UIKit
 import GoogleMaps
 
 protocol WIAMapsViewControllerDelegate {
-    func WIAMapsViewController(_ controller: WIAMapsViewController, didFinishWith location: CLLocation)
+    
+    func WIAMapsViewController(controller: WIAMapsViewController, didFinishWith location: CLLocation)
+    
 }
 
 class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
@@ -19,7 +21,7 @@ class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     var didFinishFirstLocationUpdate = false
-    var currentLocation : CLLocation?
+    var currentLocation : CLLocation!
     var delegate: WIAMapsViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -34,11 +36,6 @@ class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
             
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func cancelMap(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -47,19 +44,19 @@ class WIAMapsViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func doneWithMap(_ sender: Any) {
         dismiss(animated: true, completion: {
             let loc = self.mapView.camera.target
-            self.delegate?.WIAMapsViewController(self, didFinishWith: CLLocation.init(latitude: loc.latitude, longitude: loc.longitude))
+            self.delegate?.WIAMapsViewController(controller: self, didFinishWith: CLLocation(latitude: loc.latitude, longitude: loc.longitude))
         })
     }
     
     @IBAction func goToCurrentLocation(_ sender: Any) {
-        let camera = GMSCameraPosition.camera(withLatitude: (currentLocation!.coordinate.latitude), longitude: (currentLocation!.coordinate.longitude), zoom: 15.0)
+        let camera = GMSCameraPosition.camera(withLatitude: (currentLocation.coordinate.latitude), longitude: (currentLocation.coordinate.longitude), zoom: 15.0)
         mapView.animate(to: camera)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if didFinishFirstLocationUpdate == false {
             currentLocation = locations.last
-            let camera = GMSCameraPosition.camera(withLatitude: (currentLocation!.coordinate.latitude), longitude: (currentLocation!.coordinate.longitude), zoom: 15.0)
+            let camera = GMSCameraPosition.camera(withLatitude: (currentLocation.coordinate.latitude), longitude: (currentLocation.coordinate.longitude), zoom: 15.0)
             mapView.animate(to: camera)
             didFinishFirstLocationUpdate = true
         }
