@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class WIAManager: NSObject {
     
@@ -20,6 +21,10 @@ class WIAManager: NSObject {
     
     class func searchForCuisine(searchText:String, completion:(_ results: [WIACuisine], _ searchedText: String) -> Void) {
         completion([], searchText.trimmed)
+    }
+    
+    class func saveItem(item: WIAItem, rating: Double, review: String, images: [PHAsset], completion:(_ completed: Bool, _ item: WIAItem, _ error: Error) -> Void) {
+        
     }
     
 }

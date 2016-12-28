@@ -50,7 +50,12 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     }
     
     func doneButtonClicked() {
-        if itemObject == nil {
+        if selectedAssets == nil || selectedAssets.count == 0 {
+            let alert = UIAlertController.init(title: "No Images Selected", message: "Please select at least one image", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if itemObject == nil {
             let alert = UIAlertController.init(title: "Item missing?", message: "Please select an Item", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -73,7 +78,12 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
         else{
             tableView.endEditing(false)
             dismiss(animated: true, completion: { 
-                
+                if self.itemObject.place == nil {
+                    self.itemObject.place = self.placeObject
+                }
+                WIAManager.saveItem(item: self.itemObject, rating: self.itemRating, review: self.itemReview, images: self.selectedAssets, completion: { (completed, item, error) in
+                    
+                })
             })
         }
     }

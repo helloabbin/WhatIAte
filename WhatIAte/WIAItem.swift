@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class WIAItem: NSObject {
     
@@ -16,9 +17,11 @@ class WIAItem: NSObject {
     
     var cuisine: WIACuisine
     
+    var shortDescription: String?
+   
     var place: WIAPlace?
     
-    var shortDescription: String?
+    var images: [PHAsset]?
     
     init(name: String, price: Double, cuisine:WIACuisine, shortDescription: String?) {
         self.name = name
