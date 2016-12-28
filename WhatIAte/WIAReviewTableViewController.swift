@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate, WIARatingTableViewCellDelegate, WIATextViewCellTableViewCellDelegate {
+class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate, WIARatingTableViewCellDelegate, WIATextViewTableViewCellDelegate {
 
     enum WIAReviewViewControllerSection: Int {
         case image
@@ -21,11 +21,13 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     var selectedAssets : [PHAsset]!
     var itemObject : WIAItem!
+    var itemReview : String!
+    var itemRating : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib.init(nibName: "WIACollectionViewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIACollectionViewTableViewCell")
-        tableView.register(UINib.init(nibName: "WIATextViewCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewCellTableViewCell")
+        tableView.register(UINib.init(nibName: "WIATextViewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         tableView.keyboardDismissMode = .interactive
     }
@@ -76,7 +78,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
             return cell
         }
         else{
-            let cell : WIATextViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextViewCellTableViewCell", for: indexPath) as! WIATextViewCellTableViewCell
+            let cell : WIATextViewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextViewTableViewCell", for: indexPath) as! WIATextViewTableViewCell
             cell.delegate = self
             cell.cellIndexPath = indexPath
             return cell
@@ -153,9 +155,10 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // MARK: - WIATextViewCellTableViewCellDelegate
+    // MARK: - WIATextViewTableViewCellDelegate
     
-    func WIATextViewCellTableViewCellDidChangeEditing(cell: WIATextViewCellTableViewCell, string: String, with indexPath: IndexPath) {
+    func WIATextViewCellDidChange(cell: WIATextViewTableViewCell, text: String, indexPath: IndexPath) {
         
     }
+    
 }

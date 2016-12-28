@@ -17,18 +17,11 @@ class WIAPlace: NSObject {
     
     var location: CLLocation
     
-    var phoneNumbers: [Int]?
+    var phoneNumbers: [String]?
     
-    var cappedName: String {
-        get {
-            let trimmed = name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-            let capped = superTrimmed.lowercased()
-            return capped
-        }
-    }
+    var openHours: [String]?
     
-    init(name: String, address: String, location: CLLocation, phoneNumbers: Array<Int>?) {
+    init(name: String, address: String, location: CLLocation, phoneNumbers: Array<String>) {
         self.name = name
         self.address = address
         self.location = location

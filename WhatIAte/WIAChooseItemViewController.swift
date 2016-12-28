@@ -11,7 +11,7 @@ import UIKit
 protocol WIAChooseItemViewControllerDelegate {
     
     func WIAChooseItemViewController(controller: WIAChooseItemViewController, didFinishWith item: WIAItem)
-    
+
 }
 
 class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
@@ -87,18 +87,21 @@ class WIAChooseItemViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        WIAManager.searchForItem(searchText: searchText) { (results, searchedText) in
-            if results.count > 0 {
-                
-            }
-            else{
-                searchResult.removeAll()
-                searchResult.append(searchedText as AnyObject)
-                searchResultTableView.reloadData()
+        if searchText.length > 0 {
+            WIAManager.searchForItem(searchText: searchText) { (results, searchedText) in
+                if results.count > 0 {
+                    
+                }
+                else{
+                    searchResult.removeAll()
+                    searchResult.append(searchedText as AnyObject)
+                    searchResultTableView.reloadData()
+                }
             }
         }
-        
+        else{
+            searchResult.removeAll()
+            searchResultTableView.reloadData()
+        }
     }
-    
 }

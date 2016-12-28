@@ -20,6 +20,8 @@
 		ED7626441E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7626421E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib */; };
 		ED7626481E07F92E003ED2EB /* WIAImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7626461E07F92E003ED2EB /* WIAImageCollectionViewCell.swift */; };
 		ED7626491E07F92E003ED2EB /* WIAImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7626471E07F92E003ED2EB /* WIAImageCollectionViewCell.xib */; };
+		ED8629F21E0D4E9D007FA0D3 /* WIATextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8629F01E0D4E9D007FA0D3 /* WIATextViewTableViewCell.swift */; };
+		ED8629F31E0D4E9D007FA0D3 /* WIATextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED8629F11E0D4E9D007FA0D3 /* WIATextViewTableViewCell.xib */; };
 		ED9B3A381E03ED46008E97CF /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A371E03ED46008E97CF /* TLTagsControl.m */; };
 		ED9B3A3A1E042A44008E97CF /* WIAWorkingDaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A391E042A44008E97CF /* WIAWorkingDaysTableViewController.swift */; };
 		ED9B3A3C1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B3A3B1E042B52008E97CF /* WIAWorkingDaysTableViewCell.swift */; };
@@ -29,8 +31,6 @@
 		EDB21A0E1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB21A0C1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib */; };
 		EDB21A131E012897003E5CA6 /* WIAReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */; };
 		EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */; };
-		EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */; };
-		EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */; };
 		EDB21A211E016897003E5CA6 /* WIAChoosePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A201E016897003E5CA6 /* WIAChoosePlaceViewController.swift */; };
 		EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDCEEE611DFE83FC0076E249 /* Camera.storyboard */; };
 		EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEEE631DFE840A0076E249 /* CameraViewController.swift */; };
@@ -69,6 +69,8 @@
 		ED7626421E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIACollectionViewTableViewCell.xib; sourceTree = "<group>"; };
 		ED7626461E07F92E003ED2EB /* WIAImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		ED7626471E07F92E003ED2EB /* WIAImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIAImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		ED8629F01E0D4E9D007FA0D3 /* WIATextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATextViewTableViewCell.swift; sourceTree = "<group>"; };
+		ED8629F11E0D4E9D007FA0D3 /* WIATextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextViewTableViewCell.xib; sourceTree = "<group>"; };
 		ED9B3A351E03ED46008E97CF /* WhatIAte-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhatIAte-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED9B3A361E03ED46008E97CF /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		ED9B3A371E03ED46008E97CF /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
@@ -80,8 +82,6 @@
 		EDB21A0C1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		EDB21A121E012897003E5CA6 /* WIAReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAReviewTableViewController.swift; sourceTree = "<group>"; };
 		EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIARatingTableViewCell.swift; sourceTree = "<group>"; };
-		EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIATextViewCellTableViewCell.swift; sourceTree = "<group>"; };
-		EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WIATextViewCellTableViewCell.xib; sourceTree = "<group>"; };
 		EDB21A201E016897003E5CA6 /* WIAChoosePlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WIAChoosePlaceViewController.swift; sourceTree = "<group>"; };
 		EDCEEE611DFE83FC0076E249 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		EDCEEE631DFE840A0076E249 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +232,7 @@
 			children = (
 				ED7626401E07F725003ED2EB /* CollectionView */,
 				ED76263B1E07E290003ED2EB /* WorkingHours */,
+				EDB21A1A1E01635A003E5CA6 /* TextFieldCell */,
 				EDB21A1B1E016367003E5CA6 /* TextViewCell */,
 				ED47E4CE1E03D7EE0075C071 /* TagCell */,
 				EDB21A181E01424F003E5CA6 /* WIARatingTableViewCell.swift */,
@@ -252,9 +253,8 @@
 		EDB21A1B1E016367003E5CA6 /* TextViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				EDB21A1A1E01635A003E5CA6 /* TextFieldCell */,
-				EDB21A1C1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift */,
-				EDB21A1D1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib */,
+				ED8629F01E0D4E9D007FA0D3 /* WIATextViewTableViewCell.swift */,
+				ED8629F11E0D4E9D007FA0D3 /* WIATextViewTableViewCell.xib */,
 			);
 			name = TextViewCell;
 			sourceTree = "<group>";
@@ -373,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB21A1F1E016386003E5CA6 /* WIATextViewCellTableViewCell.xib in Resources */,
 				EDB21A0E1E0121B5003E5CA6 /* WIATextFieldTableViewCell.xib in Resources */,
 				ED7626441E07F73E003ED2EB /* WIACollectionViewTableViewCell.xib in Resources */,
 				EDFDA2211DFE7FFB00A1D244 /* LaunchScreen.storyboard in Resources */,
@@ -381,6 +380,7 @@
 				EDCEEE621DFE83FC0076E249 /* Camera.storyboard in Resources */,
 				ED47E4CD1E03D7E80075C071 /* WIATagTableViewCell.xib in Resources */,
 				EDFDA21E1DFE7FFB00A1D244 /* Assets.xcassets in Resources */,
+				ED8629F31E0D4E9D007FA0D3 /* WIATextViewTableViewCell.xib in Resources */,
 				ED76263F1E07E2AE003ED2EB /* WIAWorkingHoursTableViewCell.xib in Resources */,
 				EDFDA21C1DFE7FFB00A1D244 /* Main.storyboard in Resources */,
 			);
@@ -462,7 +462,6 @@
 				EDD253301E0AD768005B1A37 /* WIAPlace.swift in Sources */,
 				ED47E4CC1E03D7E80075C071 /* WIATagTableViewCell.swift in Sources */,
 				ED76263A1E07C770003ED2EB /* WIAMapsViewController.swift in Sources */,
-				EDB21A1E1E016386003E5CA6 /* WIATextViewCellTableViewCell.swift in Sources */,
 				EDFDA22A1DFE811D00A1D244 /* WIADiscoverViewController.swift in Sources */,
 				EDB21A191E01424F003E5CA6 /* WIARatingTableViewCell.swift in Sources */,
 				EDAB68A11E09154C00D67EBE /* WIACuisine.swift in Sources */,
@@ -476,6 +475,7 @@
 				EDCEEE661DFE840A0076E249 /* CameraViewController.swift in Sources */,
 				ED263EA81E02910800C00071 /* WIAMakeItemViewController.swift in Sources */,
 				ED9B3A3A1E042A44008E97CF /* WIAWorkingDaysTableViewController.swift in Sources */,
+				ED8629F21E0D4E9D007FA0D3 /* WIATextViewTableViewCell.swift in Sources */,
 				ED2C60641DFFF59100B6DECE /* WIAColor.swift in Sources */,
 				ED2C60671E01206E00B6DECE /* WIAChooseItemViewController.swift in Sources */,
 				EDFDA2191DFE7FFB00A1D244 /* SecondViewController.swift in Sources */,

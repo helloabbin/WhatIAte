@@ -292,6 +292,9 @@
     NSInteger index = [tagSubviews_ indexOfObject:view];
     [_tags removeObjectAtIndex:index];
     [self reloadTagSubviews];
+    if ([self.tapDelegate respondsToSelector:@selector(tagsControl:didDeleteTags:withIndexPath:)]) {
+        [self.tapDelegate tagsControl:self didDeleteTags:index withIndexPath:self.tagIndexPath];
+    }
 }
 
 - (void)tagButtonPressed:(id)sender {
@@ -305,7 +308,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.text.length > 0) {
-        NSString *tag = textField.text;
+        NSString *tag = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         textField.text = @"";
         [self addTag:tag];
         if ([self.tapDelegate respondsToSelector:@selector(tagsControl:didUpdateTags:withIndexPath:)]) {

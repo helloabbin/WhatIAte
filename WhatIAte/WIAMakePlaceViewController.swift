@@ -23,13 +23,25 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     var placeName : String!
     var placeAddress : String!
     var placeCoordinates : CLLocation!
+    
     var placePhoneNumbers : [String]?
     var placeWorkingDays : [[String : [String : Any]]]?
-    var placeWokingFrom : Date?
-    var placeWorkingTill : Date?
+    var placeWokingFrom : String?
+    var placeWorkingTill : String?
+    
+    let fromDatePicker = UIDatePicker()
+    let tillDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fromDatePicker.backgroundColor = UIColor.white
+        fromDatePicker.datePickerMode = .time
+        fromDatePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        tillDatePicker.backgroundColor = UIColor.white
+        tillDatePicker.datePickerMode = .time
+        tillDatePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
         tableView.keyboardDismissMode = .interactive
         tableView.register(UINib.init(nibName: "WIAWorkingHoursTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIAWorkingHoursTableViewCell")
@@ -58,7 +70,52 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     // MARK: - IBAction
     
     func doneButtonClicked() {
-        dismiss(animated: true, completion: nil)
+        if placeName == nil || placeName.length == 0 {
+            let alert = UIAlertController.init(title: "Name missing?", message: "Please enter Name of the Place", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if placeAddress == nil || placeAddress.length == 0 {
+            let alert = UIAlertController.init(title: "Address missing?", message: "Please enter Address of the Place", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if placeCoordinates == nil {
+            let alert = UIAlertController.init(title: "Coordinates missing?", message: "Please enter Coordinates of the Place", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if (placeWorkingDays != nil && (placeWorkingDays?.count)! > 0) && (placeWokingFrom == nil || placeWorkingTill == nil) {
+            let alert = UIAlertController.init(title: "Time missing?", message: "Please enter From and Till time", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if placeWorkingDays == nil && (placeWokingFrom != nil || placeWorkingTill != nil) {
+            let alert = UIAlertController.init(title: "Working days missing?", message: "Please enter the working days of this Place", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else{
+            
+        }
+    }
+    
+    func datePickerValueChanged(_ sender: UIDatePicker){
+        let cell : WIAWorkingHoursTableViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: WIAMakePlaceViewControllerSection.workinghours.rawValue)) as! WIAWorkingHoursTableViewCell
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        
+        if sender === fromDatePicker {
+            let from = formatter.string(from: sender.date)
+            cell.fromText = from
+            placeWokingFrom = from
+        }
+        else {
+            let till = formatter.string(from: sender.date)
+            cell.tillText = till
+            placeWorkingTill = till
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,10 +162,13 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             let cell : WIATagTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath) as! WIATagTableViewCell
             cell.tagView.tapDelegate = self
             cell.tagView.tagIndexPath = indexPath
+            cell.cellPlaceHolder = "tap here"
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WIAWorkingHoursTableViewCell", for: indexPath)
+            let cell: WIAWorkingHoursTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIAWorkingHoursTableViewCell", for: indexPath) as! WIAWorkingHoursTableViewCell
+            cell.fromInputView = fromDatePicker
+            cell.tillInputView = tillDatePicker
             return cell
         }
     }
@@ -137,7 +197,7 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == WIAMakePlaceViewControllerSection.workinghours.rawValue {
-            return 68
+            return 112
         }
         else{
             return 44
@@ -148,7 +208,21 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     // MARK: - TLTagsControlDelegate
     
     func tagsControl(_ tagsControl: TLTagsControl!, didUpdateTags tagArray: [String]!, with indexPath: IndexPath!) {
-        placePhoneNumbers = tagArray
+        if indexPath.section == WIAMakePlaceViewControllerSection.phoneNumber.rawValue {
+            placePhoneNumbers = tagArray
+        }
+    }
+    
+    func tagsControl(_ tagsControl: TLTagsControl!, didDeleteTags tagIndex: Int, with indexPath: IndexPath!) {
+        if indexPath.section == WIAMakePlaceViewControllerSection.workingDays.rawValue {
+            placeWorkingDays?.remove(at: tagIndex)
+        }
+        if tagsControl.tags.count > 0 {
+            tagsControl.tagPlaceholder = ""
+        }
+        else{
+            tagsControl.tagPlaceholder = "tap here"
+        }
     }
     
     func tagsControlShouldBeginEditing(_ tagsControl: TLTagsControl!, with indexPath: IndexPath!) -> Bool {
@@ -189,14 +263,23 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
     // MARK: - WIAWorkingDaysTableViewControllerDelegate
     
     func WIAWorkingDaysTableViewController(controller: WIAWorkingDaysTableViewController, didFinishWith workingDays: [[String : [String : Any]]]) {
+        let cell : WIATagTableViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: WIAMakePlaceViewControllerSection.workingDays.rawValue)) as! WIATagTableViewCell
+        cell.tagView.tags.removeAllObjects()
+        
         placeWorkingDays = workingDays
-        var daysArray = [String]()
+        
         for dict in placeWorkingDays! {
             let openDict = dict["open"]
             let dayName = openDict?["dayName"]
-            daysArray.append(dayName as! String)
+            cell.tagView.tags.add(dayName!)
         }
-        
+        if cell.tagView.tags.count > 0 {
+            cell.cellPlaceHolder = ""
+        }
+        else{
+            cell.cellPlaceHolder = "tap here"
+        }
+        cell.tagView.reloadTagSubviews()
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

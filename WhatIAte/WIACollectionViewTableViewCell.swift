@@ -14,7 +14,7 @@ class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSourc
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
     let imageManager = PHCachingImageManager()
-    var selectedAssets = [PHAsset]()
+    var selectedAssets: [PHAsset]!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -73,18 +73,22 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        WIAManager.searchForPlace(searchText: searchText) { (results, searchedText) in
-            if results.count > 0 {
-                
-            }
-            else{
-                searchResult .removeAll()
-                searchResult.append(searchedText as AnyObject)
-                searchTableView.reloadData()
+        if searchText.length > 0 {
+            WIAManager.searchForItem(searchText: searchText) { (results, searchedText) in
+                if results.count > 0 {
+                    
+                }
+                else{
+                    searchResult.removeAll()
+                    searchResult.append(searchedText as AnyObject)
+                    searchTableView.reloadData()
+                }
             }
         }
-        
+        else{
+            searchResult.removeAll()
+            searchTableView.reloadData()
+        }
     }
 
 }

@@ -14,6 +14,7 @@
 
 @optional
 
+- (void)tagsControl:(TLTagsControl *)tagsControl didDeleteTags:(NSInteger)tagIndex withIndexPath:(NSIndexPath*)indexPath;
 - (void)tagsControl:(TLTagsControl *)tagsControl didUpdateTags:(NSArray<NSString *>*)tagArray withIndexPath:(NSIndexPath*)indexPath;
 - (BOOL)tagsControlShouldBeginEditing:(TLTagsControl *)tagsControl withIndexPath:(NSIndexPath*)indexPath;
 

@@ -12,4 +12,10 @@ class WIATagTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var tagView: TLTagsControl!
     
+    var cellPlaceHolder: String? {
+        didSet {
+            tagView.tagPlaceholder = cellPlaceHolder
+        }
+    }
+    
 }

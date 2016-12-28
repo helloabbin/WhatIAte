@@ -11,24 +11,43 @@ import UIKit
 class WIAManager: NSObject {
     
     class func searchForItem(searchText:String, completion:(_ results: [WIAItem], _ searchedText: String) -> Void) {
-        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-//        let capped = superTrimmed.lowercased()
-        completion([], trimmed)
+        completion([], searchText.trimmed)
     }
     
     class func searchForPlace(searchText:String, completion:(_ results: [WIAPlace], _ searchedText: String) -> Void) {
-        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-//        let capped = superTrimmed.lowercased()
-        completion([], trimmed)
+        completion([], searchText.trimmed)
     }
     
     class func searchForCuisine(searchText:String, completion:(_ results: [WIACuisine], _ searchedText: String) -> Void) {
-        let trimmed = searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//        let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-//        let capped = superTrimmed.lowercased()
-        completion([], trimmed)
+        completion([], searchText.trimmed)
+    }
+    
+}
+
+extension String {
+    
+    var trimmed: String {
+        get {
+            return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    var superTrimmed: String {
+        get {
+            return trimmed.replacingOccurrences(of: " ", with: "")
+        }
+    }
+    
+    var capped: String {
+        get {
+            return superTrimmed.lowercased()
+        }
+    }
+    
+    var priceValue: Double {
+        get {
+            return Double(trimmed.replacingOccurrences(of: NSLocale.current.currencySymbol!, with: ""))!
+        }
     }
     
 }

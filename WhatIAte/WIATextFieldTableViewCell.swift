@@ -45,7 +45,7 @@ class WIATextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var cellText: String? {
         get {
-            return celltextField.text
+            return celltextField.text?.trimmed
         }
         set {
             celltextField.text = newValue

@@ -12,15 +12,6 @@ class WIACuisine: NSObject {
     
     var name : String
     
-    var cappedName: String {
-        get {
-            let trimmed = name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            let superTrimmed = trimmed.replacingOccurrences(of: " ", with: "")
-            let capped = superTrimmed.lowercased()
-            return capped
-        }
-    }
-    
     init(name: String) {
         self.name = name
     }

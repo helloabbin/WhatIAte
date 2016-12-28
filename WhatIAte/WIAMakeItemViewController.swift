@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIATextViewCellTableViewCellDelegate, WIACuisineViewControllerDelegate {
+class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIACuisineViewControllerDelegate, WIATextViewTableViewCellDelegate {
     
     enum WIAMakeItemViewControllerSection: Int {
         case name
@@ -28,7 +28,7 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         super.viewDidLoad()
         
         tableView.keyboardDismissMode = .interactive
-        tableView.register(UINib.init(nibName: "WIATextViewCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewCellTableViewCell")
+        tableView.register(UINib.init(nibName: "WIATextViewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         
         let saveButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneButtonClicked))
@@ -44,12 +44,12 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     }
     
     func doneButtonClicked() {
-        if itemName == nil {
+        if itemName == nil || itemName.length == 0 {
             let alert = UIAlertController.init(title: "Name missing?", message: "Please enter Name of the Item", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
-        else if itemPrice == nil {
+        else if itemPrice == nil || itemPrice == 0 {
             let alert = UIAlertController.init(title: "Price missing?", message: "Please enter Price of the Item", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -63,7 +63,7 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
             tableView.endEditing(false)
             dismiss(animated: true, completion: {
                 if let delegate = self.delegate {
-                    let item = WIAItem(name: self.itemName!, price: self.itemPrice!, cuisine: self.itemCuisine!, shortDescription: self.itemDescription)
+                    let item = WIAItem(name: self.itemName!, price: self.itemPrice!, cuisine: self.itemCuisine!, shortDescription: self.itemDescription!)
                     let controller : WIAChooseItemViewController = self.navigationController!.viewControllers.first as! WIAChooseItemViewController
                     delegate.WIAChooseItemViewController(controller: controller, didFinishWith: item)
                 }
@@ -107,8 +107,8 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
             return cell
         }
         else{
-            let cell : WIATextViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextViewCellTableViewCell", for: indexPath) as! WIATextViewCellTableViewCell
-            cell.delegate = self
+            let cell : WIATextViewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATextViewTableViewCell", for: indexPath) as! WIATextViewTableViewCell
+            cell.delegate = self;
             cell.cellIndexPath = indexPath
             return cell
         }
@@ -167,8 +167,7 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         case WIAMakeItemViewControllerSection.name.rawValue:
             itemName = cell.cellText
         case WIAMakeItemViewControllerSection.price.rawValue:
-            let superTrimmed = cell.cellText?.replacingOccurrences(of: NSLocale.current.currencySymbol!, with: "")
-            itemPrice = Double(superTrimmed!)
+            itemPrice = cell.cellText?.priceValue
         default:
             break
         }
@@ -205,19 +204,19 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // MARK: - WIATextViewCellTableViewCellDelegate
-    
-    func WIATextViewCellTableViewCellDidChangeEditing(cell: WIATextViewCellTableViewCell, string: String, with indexPath: IndexPath) {
-        itemDescription = string
-    }
-    
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIACuisineViewControllerDelegate
     
     func WIACuisineViewController(controller: WIACuisineViewController, didFinishWith cuisine: WIACuisine) {
         itemCuisine = cuisine
         let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: WIAMakeItemViewControllerSection.cuisine.rawValue)) as! WIATextFieldTableViewCell
         cell.cellText = itemCuisine.name
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIATextViewTableViewCellDelegate
+    
+    func WIATextViewCellDidChange(cell: WIATextViewTableViewCell, text: String, indexPath: IndexPath) {
+        itemDescription = text
     }
     
 }
