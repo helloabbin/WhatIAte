@@ -20,6 +20,8 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
         case workinghours
     }
     
+    var delegate: WIAChoosePlaceViewControllerDelegate!
+    
     var placeName : String!
     var placeAddress : String!
     var placeCoordinates : CLLocation!
@@ -96,7 +98,12 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             present(alert, animated: true, completion: nil)
         }
         else{
-            
+            tableView.endEditing(false)
+            dismiss(animated: true, completion: {
+                let place = WIAPlace(name: self.placeName, address: self.placeAddress, location: self.placeCoordinates, phoneNumbers: self.placePhoneNumbers)
+                let controller : WIAChoosePlaceViewController = self.navigationController!.viewControllers.first as! WIAChoosePlaceViewController
+                self.delegate.WIAChoosePlaceViewController(controller: controller, didFinishWith: place)
+            })
         }
     }
     
@@ -156,11 +163,13 @@ class WIAMakePlaceViewController: UITableViewController, WIATextFieldTableViewCe
             let cell : WIATagTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath) as! WIATagTableViewCell
             cell.tagView.tapDelegate = self
             cell.tagView.tagIndexPath = indexPath
+            cell.tagView.tagsBackgroundColor = WIAColor.mainColor
             return cell
         }
         else if indexPath.section == WIAMakePlaceViewControllerSection.workingDays.rawValue {
             let cell : WIATagTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIATagTableViewCell", for: indexPath) as! WIATagTableViewCell
             cell.tagView.tapDelegate = self
+            cell.tagView.tagsBackgroundColor = WIAColor.mainColor
             cell.tagView.tagIndexPath = indexPath
             cell.cellPlaceHolder = "tap here"
             return cell

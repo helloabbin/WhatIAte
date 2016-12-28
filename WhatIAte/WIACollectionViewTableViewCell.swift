@@ -14,7 +14,7 @@ class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSourc
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
     let imageManager = PHCachingImageManager()
-    var selectedAssets: [PHAsset]!
+    var assets: [PHAsset]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,11 +25,11 @@ class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSourc
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectedAssets.count
+        return assets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = selectedAssets[indexPath.row]
+        let asset = assets[indexPath.row]
         
         let cell : WIAImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "WIAImageCollectionViewCell", for: indexPath) as! WIAImageCollectionViewCell
         
@@ -56,7 +56,7 @@ class WIACollectionViewTableViewCell: UITableViewCell, UICollectionViewDataSourc
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let asset = selectedAssets[indexPath.row]
+        let asset = assets[indexPath.row]
         return CGSize.init(width: 100 * asset.pixelWidth/asset.pixelHeight, height: 100)
     }
     

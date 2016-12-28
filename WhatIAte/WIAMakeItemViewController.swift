@@ -62,11 +62,9 @@ class WIAMakeItemViewController: UITableViewController, WIATextFieldTableViewCel
         else{
             tableView.endEditing(false)
             dismiss(animated: true, completion: {
-                if let delegate = self.delegate {
-                    let item = WIAItem(name: self.itemName!, price: self.itemPrice!, cuisine: self.itemCuisine!, shortDescription: self.itemDescription!)
-                    let controller : WIAChooseItemViewController = self.navigationController!.viewControllers.first as! WIAChooseItemViewController
-                    delegate.WIAChooseItemViewController(controller: controller, didFinishWith: item)
-                }
+                let item = WIAItem(name: self.itemName, price: self.itemPrice, cuisine: self.itemCuisine, shortDescription: self.itemDescription)
+                let controller : WIAChooseItemViewController = self.navigationController!.viewControllers.first as! WIAChooseItemViewController
+                self.delegate.WIAChooseItemViewController(controller: controller, didFinishWith: item)
             })
         }
     }

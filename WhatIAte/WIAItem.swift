@@ -16,9 +16,11 @@ class WIAItem: NSObject {
     
     var cuisine: WIACuisine
     
-    var shortDescription: String
+    var place: WIAPlace?
     
-    init(name: String, price: Double, cuisine:WIACuisine, shortDescription: String) {
+    var shortDescription: String?
+    
+    init(name: String, price: Double, cuisine:WIACuisine, shortDescription: String?) {
         self.name = name
         self.price = price
         self.cuisine = cuisine

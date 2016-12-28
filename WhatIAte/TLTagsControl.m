@@ -196,8 +196,8 @@
     [tagSubviews_ removeAllObjects];
     
     UIColor *tagBackgrounColor = _tagsBackgroundColor != nil ? _tagsBackgroundColor : [UIColor colorWithWhite:0.8 alpha:1];
-    UIColor *tagTextColor = _tagsTextColor != nil ? _tagsTextColor : [UIColor darkGrayColor];
-    UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor blackColor];
+    UIColor *tagTextColor = _tagsTextColor != nil ? _tagsTextColor : [UIColor whiteColor];
+    UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor whiteColor];
     
     
     

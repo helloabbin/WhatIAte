@@ -19,9 +19,7 @@ class WIAPlace: NSObject {
     
     var phoneNumbers: [String]?
     
-    var openHours: [String]?
-    
-    init(name: String, address: String, location: CLLocation, phoneNumbers: Array<String>) {
+    init(name: String, address: String, location: CLLocation, phoneNumbers: [String]?) {
         self.name = name
         self.address = address
         self.location = location

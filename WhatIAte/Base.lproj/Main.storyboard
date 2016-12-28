@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="3520.8000000000002" y="-321.58920539730138"/>
         </scene>
-        <!--Review Table View Controller-->
+        <!--Review-->
         <scene sceneID="siF-gD-iPk">
             <objects>
-                <tableViewController id="cFM-sK-7Ia" customClass="WIAReviewTableViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Review" id="cFM-sK-7Ia" customClass="WIAReviewTableViewController" customModule="WhatIAte" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Uem-3U-CWY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,12 +345,12 @@
                                     <outlet property="delegate" destination="GBV-iD-Wzd" id="2hu-6t-A4L"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Jf9-nj-3u3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jf9-nj-3u3">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WIAChoosePlaceViewControllerCell" textLabel="D7l-H4-ILd" detailTextLabel="iyH-uM-nO4" style="IBUITableViewCellStyleSubtitle" id="AuK-VG-xVF">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AuK-VG-xVF" id="pVv-hu-ZaR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -504,12 +504,12 @@
                                     <outlet property="delegate" destination="Kr4-13-IMz" id="Z2g-Kv-ity"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZoV-p7-y1G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZoV-p7-y1G">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WIAChooseItemViewControllerCell" textLabel="if8-NK-mga" detailTextLabel="erH-vB-myh" style="IBUITableViewCellStyleSubtitle" id="P2v-8a-Xf0">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2v-8a-Xf0" id="Pqu-Ye-vvn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -653,7 +653,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="683-ie-QaB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dpd-zY-Pf5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dpd-zY-Pf5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -671,7 +671,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WIAImagePickerController" automaticallyAdjustsScrollViewInsets="NO" id="Yc1-3z-dne" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eOe-Dh-IlX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eOe-Dh-IlX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -689,7 +689,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jxU-Bg-KzV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UMY-BQ-gAt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UMY-BQ-gAt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -788,7 +788,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mVA-Ha-deR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9cS-ZD-pZB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9cS-ZD-pZB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -806,7 +806,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZp-7f-y1a" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3qo-cH-pea">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3qo-cH-pea">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -881,7 +881,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mJx-TW-qhZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3xe-8o-CCI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3xe-8o-CCI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -899,7 +899,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jjw-Qy-fbK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vn3-N8-s6B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vn3-N8-s6B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate, WIARatingTableViewCellDelegate, WIATextViewTableViewCellDelegate {
+class WIAReviewTableViewController: UITableViewController, WIATextFieldTableViewCellDelegate, WIAChooseItemViewControllerDelegate, WIARatingTableViewCellDelegate, WIATextViewTableViewCellDelegate, WIAChoosePlaceViewControllerDelegate {
 
     enum WIAReviewViewControllerSection: Int {
         case image
@@ -21,8 +21,9 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     
     var selectedAssets : [PHAsset]!
     var itemObject : WIAItem!
+    var placeObject : WIAPlace!
     var itemReview : String!
-    var itemRating : String!
+    var itemRating : Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,9 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
         tableView.register(UINib.init(nibName: "WIATextViewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextViewTableViewCell")
         tableView.register(UINib.init(nibName: "WIATextFieldTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WIATextFieldTableViewCell")
         tableView.keyboardDismissMode = .interactive
+        
+        let saveButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(doneButtonClicked))
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,6 +41,40 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
             let nav : UINavigationController = segue.destination as! UINavigationController
             let controller : WIAChooseItemViewController = nav.viewControllers.first as! WIAChooseItemViewController
             controller.delegate = self
+        }
+        else if segue.identifier == "WIAChoosePlaceViewControllerSegue" {
+            let nav : UINavigationController = segue.destination as! UINavigationController
+            let controller : WIAChoosePlaceViewController = nav.viewControllers.first as! WIAChoosePlaceViewController
+            controller.delegate = self
+        }
+    }
+    
+    func doneButtonClicked() {
+        if itemObject == nil {
+            let alert = UIAlertController.init(title: "Item missing?", message: "Please select an Item", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if placeObject == nil && itemObject.place == nil {
+            let alert = UIAlertController.init(title: "Place missing?", message: "Please select a place", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if itemRating == nil || itemRating == 0.0 {
+            let alert = UIAlertController.init(title: "Rating missing?", message: "Please Rate the Item", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else if itemReview == nil || itemReview.length == 0 {
+            let alert = UIAlertController.init(title: "Review missing?", message: "Please specify what you feel about the Item", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        else{
+            tableView.endEditing(false)
+            dismiss(animated: true, completion: { 
+                
+            })
         }
     }
 
@@ -54,7 +92,7 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == WIAReviewViewControllerSection.image.rawValue{
             let cell : WIACollectionViewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WIACollectionViewTableViewCell", for: indexPath) as! WIACollectionViewTableViewCell
-            cell.selectedAssets = selectedAssets
+            cell.assets = selectedAssets
             return cell
         }
         else if indexPath.section == WIAReviewViewControllerSection.item.rawValue{
@@ -148,17 +186,26 @@ class WIAReviewTableViewController: UITableViewController, WIATextFieldTableView
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - WIAChoosePlaceViewControllerDelegate
+    
+    func WIAChoosePlaceViewController(controller: WIAChoosePlaceViewController, didFinishWith place: WIAPlace) {
+        let cell : WIATextFieldTableViewCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: WIAReviewViewControllerSection.place.rawValue)) as! WIATextFieldTableViewCell
+        placeObject = place
+        cell.cellText = placeObject.name
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIARatingTableViewCellDelegate
     
     func WIARatingTableViewCellDidChangeRating(cell: WIARatingTableViewCell, rating: Double, indexPath: IndexPath) {
-        
+        itemRating = rating
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - WIATextViewTableViewCellDelegate
     
     func WIATextViewCellDidChange(cell: WIATextViewTableViewCell, text: String, indexPath: IndexPath) {
-        
+        itemReview = text
     }
     
 }

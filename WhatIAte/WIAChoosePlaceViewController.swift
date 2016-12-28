@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol WIAChoosePlaceViewControllerDelegate {
+    
+    func WIAChoosePlaceViewController(controller: WIAChoosePlaceViewController, didFinishWith place: WIAPlace)
+    
+}
+
 class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
 
+    var delegate: WIAChoosePlaceViewControllerDelegate!
     var searchResult = [AnyObject]()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -37,6 +44,7 @@ class WIAChoosePlaceViewController: UIViewController, UITableViewDataSource, UIT
         if segue.identifier == "WIAPlaceViewControllerSegue" {
             let vc : WIAMakePlaceViewController = segue.destination as! WIAMakePlaceViewController
             vc.placeName = searchResult.first as! String?
+            vc.delegate = delegate
         }
     }
     
